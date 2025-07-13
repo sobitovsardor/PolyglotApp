@@ -1,15 +1,26 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36109.1 d17.14
+VisualStudioVersion = 17.14.36109.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolyglotApp.Desktop", "PolyglotApp.Desktop\PolyglotApp.Desktop.csproj", "{1273A569-97D2-46EE-B88E-BA61292D170D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{26C8D70A-0EAD-4887-B30F-9E7FC79E822C} = {26C8D70A-0EAD-4887-B30F-9E7FC79E822C}
+		{34FA8BB8-6801-46EB-B5F4-40CF4F77367D} = {34FA8BB8-6801-46EB-B5F4-40CF4F77367D}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolyglotApp.Domain", "PolyglotApp.Domain\PolyglotApp.Domain.csproj", "{26C8D70A-0EAD-4887-B30F-9E7FC79E822C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolyglotApp.DataAccess", "PolyglotApp.DataAccess\PolyglotApp.DataAccess.csproj", "{7ABEAF7A-8BC6-4C3F-A835-D2C9F11B525A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{26C8D70A-0EAD-4887-B30F-9E7FC79E822C} = {26C8D70A-0EAD-4887-B30F-9E7FC79E822C}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolyglotApp.Service", "PolyglotApp.Service\PolyglotApp.Service.csproj", "{34FA8BB8-6801-46EB-B5F4-40CF4F77367D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{26C8D70A-0EAD-4887-B30F-9E7FC79E822C} = {26C8D70A-0EAD-4887-B30F-9E7FC79E822C}
+		{7ABEAF7A-8BC6-4C3F-A835-D2C9F11B525A} = {7ABEAF7A-8BC6-4C3F-A835-D2C9F11B525A}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject

@@ -1,24 +1,34 @@
-﻿using System.Text;
+﻿using PolyglotApp.Desktop.Pages;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace PolyglotApp.Desktop
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
+            MainFrame.Navigate(new WelcomePage());
+        }
+
+        private void WelcomeButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new WelcomePage());
+        }
+
+        private void DictionaryButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new DictionaryPage());
+        }
+
+        private void GamesButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new GamesPage());
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

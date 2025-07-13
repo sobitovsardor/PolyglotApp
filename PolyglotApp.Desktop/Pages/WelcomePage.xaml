@@ -1,0 +1,38 @@
+﻿<Page x:Class="PolyglotApp.Desktop.Pages.WelcomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="WelcomePage">
+
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Color="#2C5364" Offset="0.0" />
+                <GradientStop Color="#203A43" Offset="0.5" />
+                <GradientStop Color="#0F2027" Offset="1.0" />
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="🌍 PolyglotApp"
+                       FontSize="40" Foreground="White"
+                       FontWeight="Bold" HorizontalAlignment="Center"
+                       Margin="0 0 0 10"/>
+
+            <TextBlock Text="Learn 4 languages side by side"
+                       FontSize="18" Foreground="White"
+                       HorizontalAlignment="Center"
+                       Margin="0 0 0 30"/>
+
+            <Button Content="🚀 Start Learning"
+                    Width="200" Height="50"
+                    FontSize="16"
+                    Click="StartLearning_Click"
+                    Background="#4CAF50"
+                    Foreground="White"
+                    BorderBrush="Transparent"
+                    Cursor="Hand"
+                    Margin="0 0 0 10"/>
+        </StackPanel>
+    </Grid>
+</Page>
+
