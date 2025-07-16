@@ -6,4 +6,14 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PolyglotApp.Domain\PolyglotApp.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Repositories\Dictionary\" />
+    <Folder Include="Repositories\Test\" />
+    <Folder Include="Repositories\Progress\" />
+  </ItemGroup>
+
 </Project>
