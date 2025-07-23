@@ -8,9 +8,22 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+    }
 
-        // Dastlabki sahifa: DictionarySectionPage
+    private void StartLearning_Click(object sender, RoutedEventArgs e)
+    {
+        // Hide welcome card
+        WelcomeCard.Visibility = Visibility.Collapsed;
+
+        // Show main frame and navigate
+        MainFrame.Visibility = Visibility.Visible;
         MainFrame.Navigate(new DictionarySectionPage());
     }
+
+    private void CloseApp_Click(object sender, RoutedEventArgs e)
+    {
+        Application.Current.Shutdown();
+    }
 }
+
 

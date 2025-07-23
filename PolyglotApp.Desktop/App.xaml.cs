@@ -3,7 +3,6 @@ using PolyglotApp.DataAccess.Interfaces;
 using PolyglotApp.DataAccess.Repositories;
 using PolyglotApp.Service.Interfaces;
 using PolyglotApp.Service.Services;
-using System;
 using System.IO;
 using System.Windows;
 

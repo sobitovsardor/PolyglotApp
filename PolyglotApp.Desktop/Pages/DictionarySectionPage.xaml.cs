@@ -1,10 +1,6 @@
-﻿// DictionarySectionPage.xaml.cs
-using PolyglotApp.Desktop.Pages;
-using PolyglotApp.Domain.Entities.Dictionary;
-using PolyglotApp.Desktop.ViewModels;
-using System.Windows.Controls;
+﻿using PolyglotApp.Service.Interfaces;
 using System.Windows;
-using System.Windows.Navigation;
+using System.Windows.Controls;
 
 namespace PolyglotApp.Desktop.Pages;
 
@@ -13,15 +9,17 @@ public partial class DictionarySectionPage : Page
     public DictionarySectionPage()
     {
         InitializeComponent();
-        DataContext = new SectionSelectionViewModel();
+        DataContext = new SectionSelectionViewModel(App.GetService<IDictionaryService>());
     }
 
     private void SectionButton_Click(object sender, RoutedEventArgs e)
     {
-        if (sender is Button button && button.DataContext is Section selectedSection)
+        if (sender is Button button && button.Tag is string sectionTitle)
         {
-            // Navigate to next page (Unit page), pass section title
-            NavigationService?.Navigate(new DictionaryUnitPage(selectedSection.Title));
+            var mainWindow = Application.Current.MainWindow as MainWindow;
+            mainWindow?.MainFrame.Navigate(new DictionaryUnitPage(sectionTitle));
         }
     }
 }
+
+

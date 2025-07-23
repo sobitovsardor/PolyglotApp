@@ -1,17 +1,16 @@
-﻿using PolyglotApp.Domain.Entities.Dictionary;
+﻿// PolyglotApp.Desktop.ViewModels/SectionSelectionViewModel.cs
+using PolyglotApp.Domain.Entities.Dictionary;
 using PolyglotApp.Service.Interfaces;
 using System.Collections.ObjectModel;
-
-namespace PolyglotApp.Desktop.ViewModels;
 
 public class SectionSelectionViewModel
 {
     private readonly IDictionaryService _dictionaryService;
-    public ObservableCollection<Section> Sections { get; set; } = new();
+    public ObservableCollection<Section> Sections { get; set; } = new()!;
 
-    public SectionSelectionViewModel()
+    public SectionSelectionViewModel(IDictionaryService dictionaryService)
     {
-        _dictionaryService = App.GetService<IDictionaryService>();
+        _dictionaryService = dictionaryService;
         LoadSectionsAsync();
     }
 
@@ -23,4 +22,5 @@ public class SectionSelectionViewModel
             Sections.Add(section);
     }
 }
+
 

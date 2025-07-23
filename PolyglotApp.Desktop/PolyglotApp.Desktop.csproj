@@ -25,6 +25,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<None Update="Data\dictionary.json">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
 		<None Update="Infrastructure\Data\all_sections_combined.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
