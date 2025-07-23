@@ -1,0 +1,31 @@
+﻿<Page x:Class="PolyglotApp.Desktop.Pages.DictionarySectionPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:vm="clr-namespace:PolyglotApp.Desktop.ViewModels"
+      mc:Ignorable="d"
+      Title="DictionarySectionPage">
+
+    <Grid Background="White">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="Select a Section"
+                       FontSize="24"
+                       FontWeight="Bold"
+                       Margin="0,0,0,20"
+                       TextAlignment="Center"
+                       HorizontalAlignment="Center"/>
+
+            <ItemsControl ItemsSource="{Binding Sections}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding Title}"
+                                Width="200"
+                                Margin="0,5"
+                                Click="SectionButton_Click"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </Grid>
+</Page>

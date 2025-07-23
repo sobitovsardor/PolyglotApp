@@ -7,13 +7,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PolyglotApp.Domain\PolyglotApp.Domain.csproj" />
+    <Compile Remove="Repositories\Progress\**" />
+    <Compile Remove="Repositories\Test\**" />
+    <EmbeddedResource Remove="Repositories\Progress\**" />
+    <EmbeddedResource Remove="Repositories\Test\**" />
+    <None Remove="Repositories\Progress\**" />
+    <None Remove="Repositories\Test\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Repositories\Dictionary\" />
-    <Folder Include="Repositories\Test\" />
-    <Folder Include="Repositories\Progress\" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PolyglotApp.Domain\PolyglotApp.Domain.csproj" />
   </ItemGroup>
 
 </Project>

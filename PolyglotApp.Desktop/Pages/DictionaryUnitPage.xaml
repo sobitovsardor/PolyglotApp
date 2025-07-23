@@ -1,0 +1,20 @@
+﻿<Page x:Class="PolyglotApp.Desktop.Pages.DictionaryUnitPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="DictionaryUnitPage">
+
+    <ScrollViewer>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20">
+            <TextBlock Text="Select a Unit" FontSize="24" Margin="0,0,0,20" />
+            <ItemsControl ItemsSource="{Binding Units}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding Title}" Width="200" Height="40" Margin="5"
+                                Click="UnitButton_Click"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
+

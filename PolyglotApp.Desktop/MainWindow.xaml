@@ -1,28 +1,10 @@
-﻿<Window x:Class="PolyglotApp.Desktop.MainWindow"
+﻿<!-- MainWindow.xaml -->
+<Window x:Class="PolyglotApp.Desktop.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="PolyglotApp" Height="600" Width="900" WindowStartupLocation="CenterScreen">
+        Title="PolyglotApp" Height="600" Width="800">
 
     <Grid>
-        <!-- Define 2 columns: Navigation + Content -->
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-
-        <!-- LEFT: Navigation panel -->
-        <StackPanel Background="#333" Grid.Column="0">
-            <Button Content="PolyglotApp" Background="#333" Foreground="White" FontSize="22"
-                    Click="WelcomeButton_Click"
-                       HorizontalAlignment="Center" Margin="0 20"/>
-            <Button Content="📘 Dictionary" Margin="10 10" Padding="5"
-                    Click="DictionaryButton_Click"/>
-            <Button Content="🎮 Games" Margin="10 10" Padding="5"
-                    Click="GamesButton_Click"/>
-        </StackPanel>
-
-        <!-- RIGHT: Page content -->
-        <Frame x:Name="MainFrame" Grid.Column="1" NavigationUIVisibility="Hidden"/>
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>
-

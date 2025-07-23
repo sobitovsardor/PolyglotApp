@@ -1,0 +1,17 @@
+﻿<Page x:Class="PolyglotApp.Desktop.Pages.DictionaryWordsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="DictionaryWordsPage">
+
+    <Grid Margin="20">
+        <DataGrid ItemsSource="{Binding Words}" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="English" Binding="{Binding Eng.Text}" Width="*" />
+                <DataGridTextColumn Header="Uzbek" Binding="{Binding Uz.Text}" Width="*" />
+                <DataGridTextColumn Header="Russian" Binding="{Binding Ru.Text}" Width="*" />
+                <DataGridTextColumn Header="German" Binding="{Binding De.Text}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>
+
