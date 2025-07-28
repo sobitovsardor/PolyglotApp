@@ -3,15 +3,279 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       Title="DictionaryWordsPage">
 
-    <Grid Margin="20">
-        <DataGrid ItemsSource="{Binding Words}" AutoGenerateColumns="False" CanUserAddRows="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="English" Binding="{Binding Eng.Text}" Width="*" />
-                <DataGridTextColumn Header="Uzbek" Binding="{Binding Uz.Text}" Width="*" />
-                <DataGridTextColumn Header="Russian" Binding="{Binding Ru.Text}" Width="*" />
-                <DataGridTextColumn Header="German" Binding="{Binding De.Text}" Width="*" />
-            </DataGrid.Columns>
-        </DataGrid>
-    </Grid>
-</Page>
+    <Page.Resources>
+        <!-- Custom ScrollBar Style -->
+        <Style x:Key="CustomScrollBarStyle" TargetType="ScrollBar">
+            <Setter Property="Background" Value="#20FFFFFF"/>
+            <Setter Property="Width" Value="8"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ScrollBar">
+                        <Grid>
+                            <Border Background="{TemplateBinding Background}" 
+                                    CornerRadius="4" 
+                                    Opacity="0.3"/>
+                            <Track Name="PART_Track" IsDirectionReversed="True">
+                                <Track.Thumb>
+                                    <Thumb>
+                                        <Thumb.Template>
+                                            <ControlTemplate TargetType="Thumb">
+                                                <Border Background="#60FFFFFF" 
+                                                        CornerRadius="4"/>
+                                            </ControlTemplate>
+                                        </Thumb.Template>
+                                    </Thumb>
+                                </Track.Thumb>
+                            </Track>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
+        <!-- Custom ScrollViewer Style -->
+        <Style x:Key="CustomScrollViewerStyle" TargetType="ScrollViewer">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ScrollViewer">
+                        <Grid>
+                            <ScrollContentPresenter/>
+                            <ScrollBar Name="PART_VerticalScrollBar"
+                                      Style="{StaticResource CustomScrollBarStyle}"
+                                      HorizontalAlignment="Right"
+                                      VerticalAlignment="Stretch"
+                                      Value="{TemplateBinding VerticalOffset}"
+                                      Maximum="{TemplateBinding ScrollableHeight}"
+                                      ViewportSize="{TemplateBinding ViewportHeight}"
+                                      Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Word Card Style -->
+        <Style x:Key="WordCardStyle" TargetType="Border">
+            <Setter Property="Background" Value="#20FFFFFF"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Margin" Value="0,8"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="MinHeight" Value="140"/>
+            <Setter Property="BorderBrush">
+                <Setter.Value>
+                    <SolidColorBrush Color="White" Opacity="0.3"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="#000000" BlurRadius="8" ShadowDepth="2" Opacity="0.15"/>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect Color="#000000" BlurRadius="12" ShadowDepth="4" Opacity="0.25"/>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Background" Value="#30FFFFFF"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Language Label Style -->
+        <Style x:Key="LanguageLabelStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#B0FFFFFF"/>
+            <Setter Property="Margin" Value="0,0,0,4"/>
+        </Style>
+
+        <!-- Word Text Style -->
+        <Style x:Key="WordTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Margin" Value="0,0,0,3"/>
+        </Style>
+
+        <!-- Pronunciation Style -->
+        <Style x:Key="PronunciationStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="Foreground" Value="#D0FFFFFF"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Margin" Value="0,0,0,0"/>
+        </Style>
+
+        <!-- Description Style -->
+        <Style x:Key="DescriptionStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="#C0FFFFFF"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="LineHeight" Value="18"/>
+            <Setter Property="Margin" Value="0,3,0,0"/>
+        </Style>
+
+        <!-- Description Label Style -->
+        <Style x:Key="DescriptionLabelStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#90FFFFFF"/>
+            <Setter Property="Margin" Value="0,0,5,0"/>
+        </Style>
+    </Page.Resources>
+
+    <ScrollViewer Style="{StaticResource CustomScrollViewerStyle}" 
+                  VerticalScrollBarVisibility="Auto" 
+                  HorizontalScrollBarVisibility="Disabled"
+                  PanningMode="VerticalOnly"
+                  CanContentScroll="True">
+        <Grid>
+            <!-- Gradient Background -->
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#667eea" Offset="0.0" />
+                    <GradientStop Color="#764ba2" Offset="0.5" />
+                    <GradientStop Color="#f093fb" Offset="1.0" />
+                </LinearGradientBrush>
+            </Grid.Background>
+
+            <!-- Background Circles -->
+            <Canvas>
+                <Ellipse Width="100" Height="100" 
+                         Canvas.Left="120" Canvas.Top="200"
+                         Fill="#40FFFFFF" 
+                         Opacity="0.3"/>
+
+                <Ellipse Width="80" Height="80" 
+                         Canvas.Right="100" Canvas.Top="300"
+                         Fill="#30FFFFFF"
+                         Opacity="0.2"/>
+
+                <Ellipse Width="60" Height="60" 
+                         Canvas.Left="300" Canvas.Bottom="150"
+                         Fill="#20FFFFFF"
+                         Opacity="0.2"/>
+            </Canvas>
+
+            <!-- Main Content -->
+            <Grid Margin="30">
+                <!-- Header Section -->
+                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,20,0,30">
+                    <!-- Header Icon -->
+                    <Border Background="#20FFFFFF" 
+                            CornerRadius="30" 
+                            Width="60" Height="60" 
+                            Margin="0,0,0,15">
+                        <TextBlock Text="📝" 
+                                   FontSize="28" 
+                                   HorizontalAlignment="Center" 
+                                   VerticalAlignment="Center"/>
+                    </Border>
+
+                    <!-- Title -->
+                    <TextBlock Text="Dictionary Words"
+                               FontSize="24"
+                               FontWeight="Bold"
+                               Foreground="White"
+                               TextAlignment="Center"
+                               Margin="0,0,0,8"/>
+
+                    <!-- Subtitle -->
+                    <TextBlock Text="Learn vocabulary in 4 languages"
+                               FontSize="14"
+                               Foreground="#E0FFFFFF"
+                               TextAlignment="Center"/>
+                </StackPanel>
+
+                <!-- Words List -->
+                <ScrollViewer Style="{StaticResource CustomScrollViewerStyle}"
+                             VerticalAlignment="Stretch" 
+                             Margin="0,150,0,20" 
+                             VerticalScrollBarVisibility="Auto" 
+                             HorizontalScrollBarVisibility="Disabled"
+                             PanningMode="VerticalOnly"
+                             CanContentScroll="True">
+                    <ItemsControl ItemsSource="{Binding Words}" Margin="0,0,0,20">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <!-- Word Card (Compact) -->
+                                <Border Style="{StaticResource WordCardStyle}">
+                                    <StackPanel>
+                                        <!-- Words and Pronunciations - 4 Columns -->
+                                        <Grid Margin="0,0,0,15">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <!-- English Column -->
+                                            <StackPanel Grid.Column="0" Margin="0,0,15,0">
+                                                <TextBlock Text="🇺🇸 English" Style="{StaticResource LanguageLabelStyle}"/>
+                                                <TextBlock Text="{Binding Eng.Text}" Style="{StaticResource WordTextStyle}"/>
+                                                <TextBlock Text="{Binding Eng.Pronounce}" Style="{StaticResource PronunciationStyle}"/>
+                                            </StackPanel>
+
+                                            <!-- Uzbek Column -->
+                                            <StackPanel Grid.Column="1" Margin="0,0,15,0">
+                                                <TextBlock Text="🇺🇿 O'zbek" Style="{StaticResource LanguageLabelStyle}"/>
+                                                <TextBlock Text="{Binding Uz.Text}" Style="{StaticResource WordTextStyle}"/>
+                                                <TextBlock Text="{Binding Uz.Pronounce}" Style="{StaticResource PronunciationStyle}"/>
+                                            </StackPanel>
+
+                                            <!-- Russian Column -->
+                                            <StackPanel Grid.Column="2" Margin="0,0,15,0">
+                                                <TextBlock Text="🇷🇺 Русский" Style="{StaticResource LanguageLabelStyle}"/>
+                                                <TextBlock Text="{Binding Ru.Text}" Style="{StaticResource WordTextStyle}"/>
+                                                <TextBlock Text="{Binding Ru.Pronounce}" Style="{StaticResource PronunciationStyle}"/>
+                                            </StackPanel>
+
+                                            <!-- German Column -->
+                                            <StackPanel Grid.Column="3">
+                                                <TextBlock Text="🇩🇪 Deutsch" Style="{StaticResource LanguageLabelStyle}"/>
+                                                <TextBlock Text="{Binding De.Text}" Style="{StaticResource WordTextStyle}"/>
+                                                <TextBlock Text="{Binding De.Pronounce}" Style="{StaticResource PronunciationStyle}"/>
+                                            </StackPanel>
+                                        </Grid>
+
+                                        <!-- Descriptions - Row by Row -->
+                                        <StackPanel>
+                                            <!-- English Description -->
+                                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                                                <TextBlock Text="🇺🇸" Style="{StaticResource DescriptionLabelStyle}"/>
+                                                <TextBlock Text="{Binding Eng.Description}" Style="{StaticResource DescriptionStyle}"/>
+                                            </StackPanel>
+
+                                            <!-- Uzbek Description -->
+                                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                                                <TextBlock Text="🇺🇿" Style="{StaticResource DescriptionLabelStyle}"/>
+                                                <TextBlock Text="{Binding Uz.Description}" Style="{StaticResource DescriptionStyle}"/>
+                                            </StackPanel>
+
+                                            <!-- Russian Description -->
+                                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                                                <TextBlock Text="🇷🇺" Style="{StaticResource DescriptionLabelStyle}"/>
+                                                <TextBlock Text="{Binding Ru.Description}" Style="{StaticResource DescriptionStyle}"/>
+                                            </StackPanel>
+
+                                            <!-- German Description -->
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="🇩🇪" Style="{StaticResource DescriptionLabelStyle}"/>
+                                                <TextBlock Text="{Binding De.Description}" Style="{StaticResource DescriptionStyle}"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</Page>

@@ -3,18 +3,149 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       Title="DictionaryUnitPage">
 
-    <ScrollViewer>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20">
-            <TextBlock Text="Select a Unit" FontSize="24" Margin="0,0,0,20" />
-            <ItemsControl ItemsSource="{Binding Units}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Button Content="{Binding Title}" Width="200" Height="40" Margin="5"
-                                Click="UnitButton_Click"/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </StackPanel>
+    <Page.Resources>
+        <!-- Unit Button Style -->
+        <Style x:Key="UnitButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="115"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="ButtonBorder"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="10"
+                                Padding="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ButtonBorder" Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect BlurRadius="10" ShadowDepth="3" Color="Black" Opacity="0.3"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="ButtonBorder" Property="Opacity" Value="0.8"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <Grid>
+            <!-- Gradient Background -->
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#667eea" Offset="0.0" />
+                    <GradientStop Color="#764ba2" Offset="0.5" />
+                    <GradientStop Color="#f093fb" Offset="1.0" />
+                </LinearGradientBrush>
+            </Grid.Background>
+
+            <!-- Background Circles -->
+            <Canvas>
+                <Ellipse Width="120" Height="120" 
+                         Canvas.Left="100" Canvas.Top="150"
+                         Fill="#40FFFFFF" 
+                         Opacity="0.4"/>
+
+                <Ellipse Width="80" Height="80" 
+                         Canvas.Right="80" Canvas.Bottom="120"
+                         Fill="#30FFFFFF"
+                         Opacity="0.3"/>
+
+                <Ellipse Width="60" Height="60" 
+                         Canvas.Left="400" Canvas.Top="100"
+                         Fill="#20FFFFFF"
+                         Opacity="0.2"/>
+            </Canvas>
+
+            <!-- Main Content -->
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
+                <!-- Glass Card Container -->
+                <Border Background="#20FFFFFF" 
+                        CornerRadius="25" 
+                        Padding="35"
+                        BorderThickness="1"
+                        MaxWidth="750"
+                        MinHeight="450">
+                    <Border.BorderBrush>
+                        <SolidColorBrush Color="White" Opacity="0.3"/>
+                    </Border.BorderBrush>
+                    <Border.Effect>
+                        <DropShadowEffect Color="#000000" BlurRadius="25" ShadowDepth="10" Opacity="0.2"/>
+                    </Border.Effect>
+
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <!-- Header Icon -->
+                        <Border Background="#20FFFFFF" 
+                                CornerRadius="40" 
+                                Width="80" Height="80" 
+                                Margin="0,0,0,25">
+                            <TextBlock Text="📖" 
+                                       FontSize="36" 
+                                       HorizontalAlignment="Center" 
+                                       VerticalAlignment="Center"/>
+                        </Border>
+
+                        <!-- Title -->
+                        <TextBlock Text="Dictionary Units"
+                                   FontSize="28"
+                                   FontWeight="Bold"
+                                   Foreground="White"
+                                   TextAlignment="Center"
+                                   Margin="0,0,0,15"/>
+
+                        <!-- Subtitle -->
+                        <TextBlock Text="Choose a unit to practice vocabulary"
+                                   FontSize="16"
+                                   Foreground="#E0FFFFFF"
+                                   TextAlignment="Center"
+                                   Margin="0,0,0,35"/>
+
+                        <!-- Unit Buttons - 5x4 Grid Layout -->
+                        <ItemsControl ItemsSource="{Binding Units}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid Rows="4" Columns="5" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Button Style="{StaticResource UnitButtonStyle}"
+                                            Content="{Binding Title}"
+                                            Tag="{Binding Title}"
+                                            Click="UnitButton_Click"
+                                            Margin="6">
+                                        <Button.Background>
+                                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                                <GradientStop Color="#f093fb" Offset="0"/>
+                                                <GradientStop Color="#f5576c" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Button.Background>
+                                    </Button>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <!-- Footer Text -->
+                        <TextBlock Text="Select any unit above to start learning"
+                                   FontSize="12"
+                                   Foreground="#B0FFFFFF"
+                                   TextAlignment="Center"
+                                   Margin="0,25,0,0"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Grid>
     </ScrollViewer>
 </Page>
-
