@@ -4,60 +4,145 @@
       Title="DictionarySectionPage">
 
     <Page.Resources>
-        <!-- Tugma stili -->
+        <!-- Section Button Style -->
         <Style x:Key="SectionButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="#4A90E2"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Width" Value="180"/>
+            <Setter Property="Height" Value="55"/>
+            <Setter Property="FontSize" Value="15"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="Padding" Value="10,5"/>
-            <Setter Property="Margin" Value="0,5"/>
             <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Foreground" Value="White"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}"
-                                CornerRadius="10"
-                                Padding="{TemplateBinding Padding}">
+                        <Border x:Name="ButtonBorder"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="12"
+                                Padding="15">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ButtonBorder" Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect BlurRadius="12" ShadowDepth="4" Color="Black" Opacity="0.3"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="ButtonBorder" Property="Opacity" Value="0.8"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#357ABD"/>
-                    <Setter Property="Effect">
-                        <Setter.Value>
-                            <DropShadowEffect Color="Black" BlurRadius="8" ShadowDepth="2" Opacity="0.4"/>
-                        </Setter.Value>
-                    </Setter>
-                </Trigger>
-            </Style.Triggers>
         </Style>
     </Page.Resources>
 
-    <Grid Background="White">
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
+    <Grid>
+        <!-- Gradient Background -->
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#667eea" Offset="0.0" />
+                <GradientStop Color="#764ba2" Offset="0.5" />
+                <GradientStop Color="#f093fb" Offset="1.0" />
+            </LinearGradientBrush>
+        </Grid.Background>
 
-            <TextBlock Text="Select a Section"
-                       FontSize="24"
-                       FontWeight="Bold"
-                       TextAlignment="Center"
-                       />
+        <!-- Background Circles -->
+        <Canvas>
+            <Ellipse Width="150" Height="150" 
+                     Canvas.Left="80" Canvas.Top="120"
+                     Fill="#40FFFFFF" 
+                     Opacity="0.5"/>
 
-            <ItemsControl ItemsSource="{Binding Sections}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Button Style="{StaticResource SectionButtonStyle}"
-                                Content="{Binding Title}"
-                                Tag="{Binding Title}"
-                                Width="220"
-                                Click="SectionButton_Click"/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </StackPanel>
+            <Ellipse Width="100" Height="100" 
+                     Canvas.Right="60" Canvas.Bottom="100"
+                     Fill="#30FFFFFF"
+                     Opacity="0.4"/>
+
+            <Ellipse Width="80" Height="80" 
+                     Canvas.Left="500" Canvas.Top="80"
+                     Fill="#20FFFFFF"
+                     Opacity="0.3"/>
+        </Canvas>
+
+        <!-- Main Content -->
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+            <!-- Glass Card Container -->
+            <Border Background="#20FFFFFF" 
+                    CornerRadius="25" 
+                    Padding="40"
+                    BorderThickness="1"
+                    MaxWidth="650">
+                <Border.BorderBrush>
+                    <SolidColorBrush Color="White" Opacity="0.3"/>
+                </Border.BorderBrush>
+                <Border.Effect>
+                    <DropShadowEffect Color="#000000" BlurRadius="25" ShadowDepth="10" Opacity="0.2"/>
+                </Border.Effect>
+
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <!-- Header Icon -->
+                    <Border Background="#20FFFFFF" 
+                            CornerRadius="40" 
+                            Width="80" Height="80" 
+                            Margin="0,0,0,25">
+                        <TextBlock Text="📚" 
+                                   FontSize="36" 
+                                   HorizontalAlignment="Center" 
+                                   VerticalAlignment="Center"/>
+                    </Border>
+
+                    <!-- Title -->
+                    <TextBlock Text="Dictionary Sections"
+                               FontSize="28"
+                               FontWeight="Bold"
+                               Foreground="White"
+                               TextAlignment="Center"
+                               Margin="0,0,0,15"/>
+
+                    <!-- Subtitle -->
+                    <TextBlock Text="Choose a section to start learning"
+                               FontSize="16"
+                               Foreground="#E0FFFFFF"
+                               TextAlignment="Center"
+                               Margin="0,0,0,35"/>
+
+                    <!-- Section Buttons - Grid Layout -->
+                    <ItemsControl ItemsSource="{Binding Sections}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Rows="2" Columns="3" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button Style="{StaticResource SectionButtonStyle}"
+                                        Content="{Binding Title}"
+                                        Tag="{Binding Title}"
+                                        Click="SectionButton_Click"
+                                        Margin="8">
+                                    <Button.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                            <GradientStop Color="#667eea" Offset="0"/>
+                                            <GradientStop Color="#764ba2" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Button.Background>
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <!-- Footer Text -->
+                    <TextBlock Text="Select any section above to continue"
+                               FontSize="12"
+                               Foreground="#B0FFFFFF"
+                               TextAlignment="Center"
+                               Margin="0,25,0,0"/>
+                </StackPanel>
+            </Border>
+        </Grid>
     </Grid>
 </Page>
