@@ -21,10 +21,9 @@ public partial class MainWindow : Window
     private void GamePage_Click(object sender, RoutedEventArgs e)
     {
         // GamePage yaratilganda bu qatorni uncomment qiling
-        // NavigateToPage(new GamePage());
+        NavigateToPage(new TestSectionPage());
 
-        // Hozircha placeholder message
-        MessageBox.Show("Game Page coming soon!", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+        
     }
 
     private void NavigateToPage(object page)

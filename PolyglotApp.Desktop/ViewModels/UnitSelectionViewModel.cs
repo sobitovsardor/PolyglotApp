@@ -1,5 +1,5 @@
 ﻿using PolyglotApp.Domain.Entities.Dictionary;
-using PolyglotApp.Service.Interfaces;
+using PolyglotApp.Service.Interface;
 using System.Collections.ObjectModel;
 
 namespace PolyglotApp.Desktop.ViewModels;

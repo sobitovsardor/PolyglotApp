@@ -1,15 +1,16 @@
-﻿using PolyglotApp.Service.Interface;
+﻿using PolyglotApp.Desktop.ViewModels.Test;
+using PolyglotApp.Service.Interface;
 using System.Windows;
 using System.Windows.Controls;
 
 namespace PolyglotApp.Desktop.Pages;
 
-public partial class DictionarySectionPage : Page
+public partial class TestSectionPage : Page
 {
-    public DictionarySectionPage()
+    public TestSectionPage()
     {
         InitializeComponent();
-        DataContext = new SectionSelectionViewModel(App.GetService<IDictionaryService>());
+        DataContext = new TestSectionViewModel(App.GetService<IDictionaryService>());
     }
 
     private void SectionButton_Click(object sender, RoutedEventArgs e)
@@ -17,9 +18,8 @@ public partial class DictionarySectionPage : Page
         if (sender is Button button && button.Tag is string sectionTitle)
         {
             var mainWindow = Application.Current.MainWindow as MainWindow;
-            mainWindow?.MainFrame.Navigate(new DictionaryUnitPage(sectionTitle));
+            mainWindow?.MainFrame.Navigate(new TestUnitPage(sectionTitle));
         }
     }
 }
-
 

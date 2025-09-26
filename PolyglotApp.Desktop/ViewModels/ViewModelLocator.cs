@@ -1,5 +1,5 @@
 ﻿// PolyglotApp.Desktop/ViewModelLocator.cs
-using PolyglotApp.Service.Interfaces;
+using PolyglotApp.Service.Interface;
 
 namespace PolyglotApp.Desktop
 {

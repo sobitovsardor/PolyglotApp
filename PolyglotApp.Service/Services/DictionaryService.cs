@@ -1,6 +1,6 @@
 ﻿using PolyglotApp.DataAccess.Interfaces;
 using PolyglotApp.Domain.Entities.Dictionary;
-using PolyglotApp.Service.Interfaces;
+using PolyglotApp.Service.Interface;
 
 namespace PolyglotApp.Service.Services;
 

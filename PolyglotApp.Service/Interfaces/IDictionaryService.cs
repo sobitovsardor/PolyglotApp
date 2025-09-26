@@ -1,6 +1,6 @@
 ﻿using PolyglotApp.Domain.Entities.Dictionary;
 
-namespace PolyglotApp.Service.Interfaces;
+namespace PolyglotApp.Service.Interface;
 
 public interface IDictionaryService
 {
