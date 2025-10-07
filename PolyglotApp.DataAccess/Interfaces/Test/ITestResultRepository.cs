@@ -1,13 +1,14 @@
 ﻿using PolyglotApp.Domain.Entities.Test;
 
-namespace PolyglotApp.DataAccess.Interfaces.Test;
-
-public interface ITestResultRepository
+namespace PolyglotApp.DataAccess.Interfaces.Test
 {
-    Task<List<TestResult>> GetAllResultsAsync();
-
-    Task SaveResultAsync(TestResult result);
-
-    Task<TestResult?> GetBestResultAsync(string sectionTitle, string unitTitle);
-
+    public interface ITestResultRepository
+    {
+        Task<List<TestResult>> GetAllResultsAsync();
+        Task SaveResultAsync(TestResult result);
+        Task<TestResult?> GetBestResultAsync(string sectionTitle, string unitTitle);
+        Task DeleteResultsForUnitAsync(string sectionTitle, string unitTitle);
+        Task DeleteResultsBySectionAsync(string sectionTitle);
+    }
 }
+

@@ -1,12 +1,14 @@
 ﻿using PolyglotApp.Domain.Entities.Test;
 
-namespace PolyglotApp.Service.Interface;
-
-public interface ITestService
+namespace PolyglotApp.Service.Interface.Test
 {
-    Task<List<TestQuestion>> GenerateTestAsync(string sectionTiitle, string unitTitle, string fromLang, string toLang);
-
-    Task SaveTestResultAsync(TestResult result);
-
-    Task<TestResult?> GetBestResultAsync(string sectionTitle, string unitTitle);
+    public interface ITestService
+    {
+        Task<List<TestQuestion>> GenerateTestAsync(string sectionTitle, string unitTitle, string fromLang, string toLang);
+        Task SaveTestResultAsync(TestResult result);
+        Task<TestResult?> GetBestResultAsync(string sectionTitle, string unitTitle);
+        Task DeleteResultsForUnitAsync(string sectionTitle, string unitTitle);
+        Task DeleteResultsForSectionAsync(string sectionTitle);
+    }
 }
+

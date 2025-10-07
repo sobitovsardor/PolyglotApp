@@ -1,5 +1,6 @@
 ﻿using PolyglotApp.Desktop.ViewModels.Test;
 using PolyglotApp.Service.Interface;
+using PolyglotApp.Service.Interface.Test;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -8,12 +9,17 @@ namespace PolyglotApp.Desktop.Pages;
 public partial class TestUnitPage : Page
 {
     private readonly string _sectionTitle;
+    private readonly ITestService _testService;
+    private readonly IDictionaryService _dictionaryService;
 
     public TestUnitPage(string sectionTitle)
     {
         InitializeComponent();
         _sectionTitle = sectionTitle;
-        DataContext = new TestUnitViewModel(App.GetService<IDictionaryService>(), sectionTitle);
+        _dictionaryService = App.GetService<IDictionaryService>();
+        _testService = App.GetService<ITestService>();
+
+        DataContext = new TestUnitViewModel(_sectionTitle, _dictionaryService, _testService);
     }
 
     private void UnitButton_Click(object sender, RoutedEventArgs e)
@@ -24,5 +30,27 @@ public partial class TestUnitPage : Page
             mainWindow?.MainFrame.Navigate(new TestConfigurationPage(_sectionTitle, unitTitle));
         }
     }
+
+    private async void ResetSectionResults_Click(object sender, RoutedEventArgs e)
+    {
+        var confirm = MessageBox.Show(
+            $"Are you sure you want to delete ALL test results for section '{_sectionTitle}'?",
+            "Confirm Reset",
+            MessageBoxButton.YesNo,
+            MessageBoxImage.Warning);
+
+        if (confirm == MessageBoxResult.Yes)
+        {
+            await _testService.DeleteResultsForSectionAsync(_sectionTitle);
+
+            MessageBox.Show("Section results deleted successfully.",
+                "Success",
+                MessageBoxButton.OK,
+                MessageBoxImage.Information);
+
+            DataContext = new TestUnitViewModel(_sectionTitle, _dictionaryService, _testService);
+        }
+    }
+
 }
 

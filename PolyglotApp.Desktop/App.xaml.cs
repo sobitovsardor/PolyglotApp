@@ -4,7 +4,9 @@ using PolyglotApp.DataAccess.Interfaces.Test;
 using PolyglotApp.DataAccess.Repositories;
 using PolyglotApp.DataAccess.Repositories.Test;
 using PolyglotApp.Service.Interface;
+using PolyglotApp.Service.Interface.Test;
 using PolyglotApp.Service.Services;       // <-- TestService namespace
+using PolyglotApp.Service.Services.Test;
 using System;
 using System.IO;
 using System.Windows;
@@ -19,23 +21,26 @@ namespace PolyglotApp.Desktop
         {
             var serviceCollection = new ServiceCollection();
 
-            // fayl yo'llari
+            // Fayllar
             var dictionaryFilePath = Path.Combine(AppContext.BaseDirectory, "Data", "dictionary.json");
-            var appData = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PolyglotApp");
+            var appData = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                "PolyglotApp"
+            );
             Directory.CreateDirectory(appData);
             var testResultsPath = Path.Combine(appData, "test_results.json");
 
-            // Repository va Service ro'yxatdan o'tkazish
-            serviceCollection.AddSingleton<IDictionaryRepository>(sp => new DictionaryRepository(dictionaryFilePath));
+            // Dictionary
+            serviceCollection.AddSingleton<IDictionaryRepository>(sp =>
+                new DictionaryRepository(dictionaryFilePath));
             serviceCollection.AddSingleton<IDictionaryService, DictionaryService>();
 
-            serviceCollection.AddSingleton<ITestResultRepository>(sp => new TestResultRepository(testResultsPath));
-
-            // !!! MUHIM: ITestService ni ro'yxatdan o'tkazamiz
+            // Test
+            serviceCollection.AddSingleton<ITestResultRepository>(sp =>
+                new TestResultRepository(testResultsPath));
             serviceCollection.AddSingleton<ITestService, TestService>();
 
             Services = serviceCollection.BuildServiceProvider();
-
             base.OnStartup(e);
         }
 
