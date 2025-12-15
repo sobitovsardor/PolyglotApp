@@ -289,7 +289,7 @@
                          Fill="#555555"
                          Margin="0,0,15,0"/>
                 <StackPanel VerticalAlignment="Center">
-                    <TextBlock Text="Sobitov Sardor" 
+                    <TextBlock Text="None Group" 
                                FontSize="12"
                                FontWeight="SemiBold" 
                                Foreground="White"/>

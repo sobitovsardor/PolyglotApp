@@ -190,7 +190,6 @@
                         Foreground="White" 
                         BorderThickness="0"
                         Background="#8B7355"
-                        Click="GamePage_Click"
                         Cursor="Hand">
                     <Button.Content>
                         <TextBlock Text="🎮 Games"/>
@@ -298,13 +297,6 @@
                             </StackPanel>
                         </StackPanel>
 
-                        <!-- Arrow Icon between languages -->
-                        <TextBlock Text="↓"
-                                   FontSize="24"
-                                   Foreground="#4A90E2"
-                                   HorizontalAlignment="Center"
-                                   Margin="0,5,0,15"/>
-
                         <!-- To Language -->
                         <StackPanel Orientation="Horizontal" 
                                     Margin="0,0,0,30"
@@ -394,7 +386,7 @@
                          Fill="#555555"
                          Margin="0,0,15,0"/>
                 <StackPanel VerticalAlignment="Center">
-                    <TextBlock Text="Sobitov Sardor" 
+                    <TextBlock Text="None Group" 
                                FontSize="12"
                                FontWeight="SemiBold" 
                                Foreground="White"/>

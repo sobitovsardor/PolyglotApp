@@ -33,11 +33,8 @@ public partial class DictionaryWordsPage : Page
 
         if (mainWindow != null)
         {
-            // Game page'ga navigate qilish
-            // mainWindow.MainFrame.Navigate(new GamePage());
+            mainWindow.MainFrame.Navigate(new TestSectionPage());
 
-            // Yoki NavigationService orqali:
-            NavigationService?.Navigate(new Uri("Pages/GamePage.xaml", UriKind.Relative));
         }
     }
 }

@@ -33,6 +33,11 @@ public partial class TestExecutionPage : Page
         mainWindow?.MainFrame.Navigate(new TestResultPage(result));
     }
 
+    private void DictionaryPage_Click(object sender, RoutedEventArgs e)
+    {
+        var mainWindow = Application.Current.MainWindow as MainWindow;
 
+        mainWindow?.MainFrame.Navigate(new DictionarySectionPage());
+    }
 }
 
