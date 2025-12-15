@@ -3,307 +3,484 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="PolyglotApp"
         Height="700"
-        Width="1000"
+        Width="1200"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanResize"
-        Background="Transparent"
-        AllowsTransparency="True"
-        WindowStyle="None">
-
+        WindowStyle="SingleBorderWindow"
+        Background="White">
     <Grid>
-        <!-- Gradient Background -->
-        <Grid.Background>
-            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="#667eea" Offset="0.0" />
-                <GradientStop Color="#764ba2" Offset="0.5" />
-                <GradientStop Color="#f093fb" Offset="1.0" />
-            </LinearGradientBrush>
-        </Grid.Background>
+        <!-- Top Navigation Bar -->
+        <Grid Height="80" 
+              VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
 
-        <!-- Background Circles -->
-        <Canvas>
-            <Ellipse Width="200" Height="200" 
-                     Canvas.Left="50" Canvas.Top="100"
-                     Fill="#40FFFFFF" 
-                     Opacity="0.6"/>
+            <!-- Logo -->
+            <StackPanel Grid.Column="0" 
+                        Orientation="Horizontal" 
+                        VerticalAlignment="Center"
+                        Margin="40,0,0,0">
+                <Ellipse Width="35" 
+                         Height="35" 
+                         Fill="#333333"/>
+                <TextBlock Text="P" 
+                           FontSize="24" 
+                           FontWeight="Bold" 
+                           Foreground="White"
+                           Margin="-27,0,0,0"
+                           VerticalAlignment="Center"/>
+            </StackPanel>
 
-            <Ellipse Width="150" Height="150" 
-                     Canvas.Right="80" Canvas.Bottom="150"
-                     Fill="#30FFFFFF"
-                     Opacity="0.4"/>
+            <!-- Center Navigation Menu with Buttons -->
+            <StackPanel Grid.Column="1" 
+                        Orientation="Horizontal" 
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
 
-            <Ellipse Width="100" Height="100" 
-                     Canvas.Left="700" Canvas.Top="50"
-                     Fill="#20FFFFFF"
-                     Opacity="0.3"/>
-        </Canvas>
-
-        <!-- Title Bar -->
-        <Border Height="40" 
-                VerticalAlignment="Top" 
-                Background="#20000000"
-                MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
-            <Grid>
-                <TextBlock Text="PolyglotApp" 
-                           FontSize="14" 
-                           FontWeight="Medium"
-                           Foreground="White" 
-                           VerticalAlignment="Center" 
-                           HorizontalAlignment="Left"
-                           Margin="15,0,0,0"/>
-
-                <!-- Window Control Buttons -->
-                <StackPanel Orientation="Horizontal" 
-                           HorizontalAlignment="Right"
-                           VerticalAlignment="Center"
-                           Margin="0,0,5,0">
-
-                    <!-- Minimize Button -->
-                    <Button x:Name="MinimizeButton"
-                            Content="─"
-                            Width="46" Height="32"
-                            FontSize="12" FontWeight="Bold"
-                            Background="Transparent"
-                            Foreground="White" BorderThickness="0"
-                            Cursor="Hand"
-                            Click="MinimizeButton_Click"
-                            ToolTip="Minimize"
-                            Margin="0">
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#30FFFFFF"/>
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-
-                    <!-- Maximize/Restore Button -->
-                    <Button x:Name="MaximizeRestoreButton"
-                            Content="□"
-                            Width="46" Height="32"
-                            FontSize="12" FontWeight="Bold"
-                            Background="Transparent"
-                            Foreground="White" BorderThickness="0"
-                            Cursor="Hand"
-                            Click="MaximizeRestoreButton_Click"
-                            ToolTip="Maximize"
-                            Margin="0">
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#30FFFFFF"/>
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-
-                    <!-- Close Button -->
-                    <Button Content="✕"
-                            Width="46" Height="32"
-                            FontSize="12" FontWeight="Bold"
-                            Background="Transparent"
-                            Foreground="White" BorderThickness="0"
-                            Cursor="Hand"
-                            Click="CloseApp_Click"
-                            ToolTip="Close Application"
-                            Margin="0">
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#50FF0000"/>
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-                </StackPanel>
-            </Grid>
-        </Border>
-
-        <!-- Main Content Area with margin for title bar -->
-        <Grid Margin="0,40,0,0">
-            <!-- WELCOME CARD - Full Screen -->
-            <Border x:Name="WelcomeCard"
-                    Padding="40"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch">
-                <Border.Background>
-                    <SolidColorBrush Color="Transparent"/>
-                </Border.Background>
-
-                <!-- Centered Content -->
-                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <!-- Glass Card Container -->
-                    <Border Background="#20FFFFFF" 
-                            CornerRadius="20" 
-                            Padding="50"
-                            BorderThickness="1">
-                        <Border.BorderBrush>
-                            <SolidColorBrush Color="White" Opacity="0.3"/>
-                        </Border.BorderBrush>
-                        <Border.Effect>
-                            <DropShadowEffect Color="#000000" BlurRadius="20" ShadowDepth="10" Opacity="0.2"/>
-                        </Border.Effect>
-
-                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <!-- Logo -->
-                            <Border Background="#20FFFFFF" 
-                            CornerRadius="50" 
-                            Width="100" Height="100" 
-                            Margin="0,0,0,30">
-                                <TextBlock Text="🌍" 
-                                   FontSize="48" 
-                                   HorizontalAlignment="Center" 
-                                   VerticalAlignment="Bottom" 
-                                   Margin="0,0,0,18"/>
+                <!-- Home Button -->
+                <Button x:Name="HomeButton"
+                        Width="120" 
+                        Height="45"
+                        FontSize="15" 
+                        FontWeight="Medium"
+                        Foreground="#333333" 
+                        BorderThickness="1"
+                        BorderBrush="#DDDDDD"
+                        Background="White"
+                        Click="BackToHome_Click"
+                        Cursor="Hand"
+                        Margin="0,0,15,0">
+                    <Button.Content>
+                        <TextBlock Text="🏠 Home"/>
+                    </Button.Content>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="border"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="22"
+                                    Padding="15,8">
+                                <ContentPresenter HorizontalAlignment="Center" 
+                                                  VerticalAlignment="Center"/>
                             </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" 
+                                            Property="Background" 
+                                            Value="#F5F5F5"/>
+                                    <Setter TargetName="border" 
+                                            Property="BorderBrush" 
+                                            Value="#333333"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
 
-                            <TextBlock Text="PolyglotApp"
-                               FontSize="32"
-                               FontWeight="Bold"
-                               Foreground="White"
-                               TextAlignment="Center"
-                               Margin="0,0,0,10"/>
+                <!-- Dictionary Button -->
+                <Button x:Name="DictionaryButton"
+                        Width="150" 
+                        Height="45"
+                        FontSize="15" 
+                        FontWeight="Medium"
+                        Foreground="White" 
+                        BorderThickness="0"
+                        Background="#2C2C2C"
+                        Click="DictionaryPage_Click"
+                        Cursor="Hand"
+                        Margin="0,0,15,0">
+                    <Button.Content>
+                        <TextBlock Text="📚 Dictionary"/>
+                    </Button.Content>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="border"
+                                    Background="{TemplateBinding Background}"
+                                    CornerRadius="22"
+                                    Padding="15,8">
+                                <ContentPresenter HorizontalAlignment="Center" 
+                                                  VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" 
+                                            Property="Background" 
+                                            Value="#1A1A1A"/>
+                                    <Setter TargetName="border" Property="Effect">
+                                        <Setter.Value>
+                                            <DropShadowEffect BlurRadius="10" 
+                                                              ShadowDepth="0"
+                                                              Opacity="0.3"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
 
-                            <TextBlock Text="Master 4 Languages with Style"
-                               FontSize="16"
-                               Foreground="#E0FFFFFF"
-                               TextAlignment="Center"
-                               Margin="0,0,0,40"/>
+                <!-- Game Button -->
+                <Button x:Name="GameButton"
+                        Width="140" 
+                        Height="45"
+                        FontSize="15" 
+                        FontWeight="Medium"
+                        Foreground="White" 
+                        BorderThickness="0"
+                        Background="#8B7355"
+                        Click="GamePage_Click"
+                        Cursor="Hand">
+                    <Button.Content>
+                        <TextBlock Text="🎮 Games"/>
+                    </Button.Content>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="border"
+                                    Background="{TemplateBinding Background}"
+                                    CornerRadius="22"
+                                    Padding="15,8">
+                                <ContentPresenter HorizontalAlignment="Center" 
+                                                  VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" 
+                                            Property="Background" 
+                                            Value="#6F5B42"/>
+                                    <Setter TargetName="border" Property="Effect">
+                                        <Setter.Value>
+                                            <DropShadowEffect BlurRadius="10" 
+                                                              ShadowDepth="0"
+                                                              Opacity="0.3"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
 
-                            <!-- Dictionary Button -->
-                            <Button x:Name="DictionaryButton"
-                            Content="📚 Dictionary Learning"
-                            Width="280" Height="60"
-                            FontSize="18" FontWeight="SemiBold"
-                            Margin="0,15" Cursor="Hand"
-                            Foreground="White" BorderThickness="0"
-                            Click="DictionaryPage_Click">
-                                <Button.Background>
-                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                        <GradientStop Color="#667eea" Offset="0"/>
-                                        <GradientStop Color="#764ba2" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </Button.Background>
-                                <Button.Template>
-                                    <ControlTemplate TargetType="Button">
-                                        <Border x:Name="ButtonBorder"
-                                        Background="{TemplateBinding Background}"
-                                        CornerRadius="12"
-                                        Padding="15">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                        <ControlTemplate.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter TargetName="ButtonBorder" Property="Effect">
-                                                    <Setter.Value>
-                                                        <DropShadowEffect BlurRadius="15" ShadowDepth="5" Color="Black" Opacity="0.3"/>
-                                                    </Setter.Value>
-                                                </Setter>
-                                            </Trigger>
-                                            <Trigger Property="IsPressed" Value="True">
-                                                <Setter TargetName="ButtonBorder" Property="Opacity" Value="0.8"/>
-                                            </Trigger>
-                                        </ControlTemplate.Triggers>
-                                    </ControlTemplate>
-                                </Button.Template>
-                            </Button>
-
-                            <!-- Game Button -->
-                            <Button x:Name="GameButton"
-                            Content="🎮 Interactive Games"
-                            Width="280" Height="60"
-                            FontSize="18" FontWeight="SemiBold"
-                            Margin="0,15" Cursor="Hand"
-                            Foreground="White" BorderThickness="0"
-                            Click="GamePage_Click">
-                                <Button.Background>
-                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                        <GradientStop Color="#f093fb" Offset="0"/>
-                                        <GradientStop Color="#f5576c" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </Button.Background>
-                                <Button.Template>
-                                    <ControlTemplate TargetType="Button">
-                                        <Border x:Name="ButtonBorder"
-                                        Background="{TemplateBinding Background}"
-                                        CornerRadius="12"
-                                        Padding="15">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                        <ControlTemplate.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter TargetName="ButtonBorder" Property="Effect">
-                                                    <Setter.Value>
-                                                        <DropShadowEffect BlurRadius="15" ShadowDepth="5" Color="Black" Opacity="0.3"/>
-                                                    </Setter.Value>
-                                                </Setter>
-                                            </Trigger>
-                                            <Trigger Property="IsPressed" Value="True">
-                                                <Setter TargetName="ButtonBorder" Property="Opacity" Value="0.8"/>
-                                            </Trigger>
-                                        </ControlTemplate.Triggers>
-                                    </ControlTemplate>
-                                </Button.Template>
-                            </Button>
-
-                            <TextBlock Text="Choose your learning path above"
-                                       FontSize="12"
-                                       Foreground="#B0FFFFFF"
-                                       TextAlignment="Center"
-                                       Margin="0,20,0,0"/>
-                        </StackPanel>
-                    </Border>
-                </Grid>
+            <!-- Menu Icon -->
+            <Border Grid.Column="2" 
+                    Width="35" 
+                    Height="35"
+                    Background="Transparent" 
+                    BorderBrush="#DDDDDD"
+                    BorderThickness="1" 
+                    CornerRadius="8"
+                    Cursor="Hand" 
+                    Margin="0,0,40,0"
+                    VerticalAlignment="Center">
+                <TextBlock Text="☰" 
+                           FontSize="18" 
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" 
+                           Foreground="#333333"/>
             </Border>
-
-            <!-- MAIN FRAME -->
-            <Frame x:Name="MainFrame"
-                   NavigationUIVisibility="Hidden"
-                   Visibility="Collapsed" />
-
-            <!-- Back Button -->
-            <Button x:Name="BackButton"
-                    Content="← Back"
-                    Width="80" Height="35"
-                    FontSize="14" FontWeight="Medium"
-                    Background="#30FFFFFF"
-                    Foreground="White" BorderThickness="0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Margin="15" Cursor="Hand"
-                    Click="BackToHome_Click"
-                    Visibility="Collapsed">
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}"
-                                CornerRadius="8"
-                                Padding="10">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Opacity" Value="0.8"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
         </Grid>
+
+        <!-- Main Content Area -->
+        <Grid Margin="0,80,0,100">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="600"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Left Content -->
+            <StackPanel Grid.Column="0" 
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left" 
+                        Margin="80,0,0,0">
+                <TextBlock FontSize="18" 
+                           Foreground="#999999"
+                           Margin="0,0,0,10">
+                    <Run Text="real" 
+                         Foreground="#333333" 
+                         FontWeight="SemiBold"/>
+                    <Run Text="reason."/>
+                </TextBlock>
+
+                <TextBlock Text="PolyglotApp"
+                           FontSize="56"
+                           FontWeight="Bold" 
+                           Foreground="#111111"
+                           LineHeight="65" 
+                           Margin="0,0,0,30"/>
+
+                <TextBlock Text="Master multiple languages with innovative learning methods and interactive experiences."
+                           FontSize="16"
+                           Foreground="#666666" 
+                           TextWrapping="Wrap"
+                           LineHeight="26" 
+                           MaxWidth="400"
+                           HorizontalAlignment="Left"/>
+            </StackPanel>
+
+            <!-- Right Side - Background Image Area -->
+            <Grid Grid.Column="1" 
+                  Margin="40,0,60,0">
+                <!-- Background Image (replaceable) -->
+                <Border CornerRadius="20" 
+                        ClipToBounds="True"
+                        Background="#F5F5F5">
+                    <!-- Placeholder for background image -->
+                    <Grid>
+                        <!-- You can replace this with actual Image control -->
+                        <!-- <Image Source="YourImagePath.jpg" Stretch="UniformToFill"/> -->
+
+                        <!-- Decorative Circle -->
+                        <Ellipse Width="200" 
+                                 Height="200"
+                                 Fill="#E0E0E0" 
+                                 Opacity="0.3"
+                                 HorizontalAlignment="Right" 
+                                 VerticalAlignment="Top"
+                                 Margin="0,-50,-50,0"/>
+
+                        <!-- Center Object Placeholder (like the candle in reference) -->
+                        <Border Width="180" 
+                                Height="250"
+                                Background="#8B7355" 
+                                CornerRadius="10"
+                                HorizontalAlignment="Center" 
+                                VerticalAlignment="Center">
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="20" 
+                                                  ShadowDepth="0"
+                                                  Opacity="0.3"/>
+                            </Border.Effect>
+
+                            <!-- Decorative rope/string effect -->
+                            <Rectangle Fill="#D4AF37" 
+                                       Width="2" 
+                                       Height="200"
+                                       VerticalAlignment="Center"/>
+                        </Border>
+
+                        <!-- Top flame/accent -->
+                        <Ellipse Width="8" 
+                                 Height="40" 
+                                 Fill="#FFD700"
+                                 HorizontalAlignment="Center" 
+                                 VerticalAlignment="Top"
+                                 Margin="0,80,0,0">
+                            <Ellipse.Effect>
+                                <BlurEffect Radius="8"/>
+                            </Ellipse.Effect>
+                        </Ellipse>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+
+        <!-- Bottom Section (Black Bar with Author Info) -->
+        <Grid Height="100" 
+              VerticalAlignment="Bottom" 
+              Background="#1A1A1A">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Author/Creator Info -->
+            <StackPanel Grid.Column="0" 
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center" 
+                        Margin="40,0,0,0">
+                <Ellipse Width="45" 
+                         Height="45" 
+                         Fill="#555555"
+                         Margin="0,0,15,0"/>
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="Sobitov Sardor" 
+                               FontSize="12"
+                               FontWeight="SemiBold" 
+                               Foreground="White"/>
+                    <TextBlock Text="UX/UI DESIGNER AND INTERACTIVE DEVELOPER"
+                               FontSize="9" 
+                               Foreground="#888888"/>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Social Icons -->
+            <StackPanel Grid.Column="2" 
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center" 
+                        Margin="0,0,30,0">
+                <Border Width="35" 
+                        Height="35" 
+                        Background="Transparent"
+                        BorderBrush="#444444" 
+                        BorderThickness="1"
+                        CornerRadius="8" 
+                        Margin="0,0,10,0" 
+                        Cursor="Hand">
+                    <TextBlock Text="📷" 
+                               FontSize="16"
+                               HorizontalAlignment="Center" 
+                               VerticalAlignment="Center"/>
+                </Border>
+                <Border Width="35" 
+                        Height="35" 
+                        Background="Transparent"
+                        BorderBrush="#444444" 
+                        BorderThickness="1"
+                        CornerRadius="8" 
+                        Cursor="Hand">
+                    <TextBlock Text="↗" 
+                               FontSize="16" 
+                               Foreground="White"
+                               HorizontalAlignment="Center" 
+                               VerticalAlignment="Center"/>
+                </Border>
+            </StackPanel>
+
+            <!-- Navigation Dots and Arrow Navigation -->
+            <StackPanel Grid.Column="3" 
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center" 
+                        Margin="0,0,40,0">
+                <Ellipse Width="8" 
+                         Height="8" 
+                         Fill="#666666"
+                         Margin="0,0,8,0"/>
+                <Ellipse Width="8" 
+                         Height="8" 
+                         Fill="#666666"
+                         Margin="0,0,8,0"/>
+                <Ellipse Width="8" 
+                         Height="8" 
+                         Fill="White"
+                         Margin="0,0,20,0"/>
+
+                <!-- Arrow Navigation - Previous -->
+                <Button x:Name="PreviousButton"
+                        Width="30" 
+                        Height="30" 
+                        Background="Transparent"
+                        BorderBrush="#444444" 
+                        BorderThickness="1"
+                        Cursor="Hand"
+                        Margin="0,0,8,0">
+                    <Button.Content>
+                        <TextBlock Text="‹" 
+                                   FontSize="18" 
+                                   Foreground="White"/>
+                    </Button.Content>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="border"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="15">
+                                <ContentPresenter HorizontalAlignment="Center" 
+                                                  VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" 
+                                            Property="Background" 
+                                            Value="#333333"/>
+                                    <Setter TargetName="border" 
+                                            Property="BorderBrush" 
+                                            Value="#666666"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <!-- Arrow Navigation - Next -->
+                <Button x:Name="NextButton"
+                        Width="30" 
+                        Height="30" 
+                        Background="Transparent"
+                        BorderBrush="#444444" 
+                        BorderThickness="1"
+                        Cursor="Hand"
+                        Margin="0,0,0,0">
+                    <Button.Content>
+                        <TextBlock Text="›" 
+                                   FontSize="18" 
+                                   Foreground="White"/>
+                    </Button.Content>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="border"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="15">
+                                <ContentPresenter HorizontalAlignment="Center" 
+                                                  VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" 
+                                            Property="Background" 
+                                            Value="#333333"/>
+                                    <Setter TargetName="border" 
+                                            Property="BorderBrush" 
+                                            Value="#666666"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+        </Grid>
+
+        <!-- Back Button (Hidden initially) -->
+        <Button x:Name="BackButton"
+                Width="100" 
+                Height="40"
+                FontSize="14" 
+                FontWeight="Medium"
+                Background="White"
+                Foreground="#333333" 
+                BorderThickness="0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Margin="40,40,0,0"
+                Cursor="Hand"
+                Click="BackToHome_Click"
+                Visibility="Collapsed">
+            <Button.Content>
+                <TextBlock Text="← Back"/>
+            </Button.Content>
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                            CornerRadius="20"
+                            Padding="15,8">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="10" 
+                                              ShadowDepth="0"
+                                              Opacity="0.1"/>
+                        </Border.Effect>
+                        <ContentPresenter HorizontalAlignment="Center" 
+                                          VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#F5F5F5"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <!-- Main Frame (Hidden initially) -->
+        <Frame x:Name="MainFrame"
+               NavigationUIVisibility="Hidden"
+               Visibility="Collapsed"/>
     </Grid>
 </Window>
