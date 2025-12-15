@@ -32,5 +32,7 @@ public partial class TestExecutionPage : Page
         var mainWindow = Application.Current.MainWindow as MainWindow;
         mainWindow?.MainFrame.Navigate(new TestResultPage(result));
     }
+
+
 }
 

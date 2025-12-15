@@ -14,13 +14,29 @@ public partial class MainWindow : Window
 
     private void DictionaryPage_Click(object sender, RoutedEventArgs e)
     {
-        NavigateToPage(new DictionarySectionPage());
+        try 
+        { 
+            NavigateToPage(new DictionarySectionPage()); 
+        }
+        catch (System.Exception ex)
+        {
+            MessageBox.Show("Lug'at sahifasini yuklashda xatolik yuz berdi: " + ex.Message);
+        }
+        
     }
 
     private void GamePage_Click(object sender, RoutedEventArgs e)
     {
-        // Game sahifasi tayyor bo'lganda bu yerda kerakli page ni chaqiring
-        NavigateToPage(new TestSectionPage());
+        try
+        {
+            // Game sahifasi tayyor bo'lganda bu yerda kerakli page ni chaqiring
+            NavigateToPage(new TestSectionPage());
+
+        }
+        catch (System.Exception ex)
+        {
+            MessageBox.Show("O'yin sahifasini yuklashda xatolik yuz berdi: " + ex.Message);
+        }
     }
 
     private void NavigateToPage(Page page)

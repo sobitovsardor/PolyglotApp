@@ -39,14 +39,21 @@ public partial class DictionarySectionPage : Page
     private void GamePage_Click(object sender, RoutedEventArgs e)
     {
         var mainWindow = Application.Current.MainWindow as MainWindow;
-
-        if (mainWindow != null)
+        try
         {
-            // Game page'ga navigate qilish
-            // mainWindow.MainFrame.Navigate(new GamePage());
+            if (mainWindow != null)
+            {
+                // Game page'ga navigate qilish
+                // mainWindow.MainFrame.Navigate(new GamePage());
 
-            // Yoki NavigationService orqali:
-            NavigationService?.Navigate(new Uri("Pages/GamePage.xaml", UriKind.Relative));
+                // Yoki NavigationService orqali:
+                NavigationService?.Navigate(new Uri("Pages/GamePage.xaml", UriKind.Relative));
+            }
+        }
+        catch (System.Exception ex)
+        {
+            MessageBox.Show("Xatolik yuz berdi: " + ex.Message);
+
         }
     }
 }

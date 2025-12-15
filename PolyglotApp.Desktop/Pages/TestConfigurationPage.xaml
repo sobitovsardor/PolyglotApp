@@ -1,50 +1,418 @@
 ﻿<Page x:Class="PolyglotApp.Desktop.Pages.TestConfigurationPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Title="TestConfigurationPage">
+      Title="TestConfigurationPage"
+      Background="White">
 
-    <Grid Background="White">
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
-            <TextBlock Text="Test Configuration"
-                       FontSize="24"
-                       FontWeight="Bold"
-                       Margin="0,0,0,20"
-                       TextAlignment="Center"
-                       HorizontalAlignment="Center"/>
+    <Page.Resources>
+        <!-- Configuration Card Style -->
+        <Style x:Key="ConfigCardStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#DDDDDD"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="15"/>
+            <Setter Property="Padding" Value="25"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="15" 
+                                      ShadowDepth="3" 
+                                      Color="Black" 
+                                      Opacity="0.1"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
-            <!-- From Language -->
-            <StackPanel Orientation="Horizontal" Margin="0,5">
-                <TextBlock Text="From:" Width="80" VerticalAlignment="Center"/>
-                <ComboBox Width="150"
-                          ItemsSource="{Binding Languages}"
-                          SelectedItem="{Binding FromLanguage}" />
+        <!-- ComboBox Style -->
+        <Style x:Key="ConfigComboBoxStyle" TargetType="ComboBox">
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#DDDDDD"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="#333333"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+
+        <!-- Start Button Style -->
+        <Style x:Key="StartButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#4A90E2"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="25"
+                                Padding="15,8">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#357ABD"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="border" Property="Background" Value="#CCCCCC"/>
+                                <Setter Property="Foreground" Value="#999999"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Language Icon Style -->
+        <Style x:Key="LanguageIconStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Margin" Value="0,0,10,0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+        <!-- Top Navigation Bar -->
+        <Grid Height="80" 
+              VerticalAlignment="Top"
+              Background="White">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Logo -->
+            <StackPanel Grid.Column="0" 
+                        Orientation="Horizontal" 
+                        VerticalAlignment="Center"
+                        Margin="40,0,0,0"
+                        Cursor="Hand">
+                <Ellipse Width="35" 
+                         Height="35" 
+                         Fill="#333333"/>
+                <TextBlock Text="P" 
+                           FontSize="24" 
+                           FontWeight="Bold" 
+                           Foreground="White"
+                           Margin="-27,0,0,0"
+                           VerticalAlignment="Center"/>
             </StackPanel>
 
-            <!-- To Language -->
-            <StackPanel Orientation="Horizontal" Margin="0,5">
-                <TextBlock Text="To:" Width="80" VerticalAlignment="Center"/>
-                <ComboBox Width="150"
-                          ItemsSource="{Binding Languages}"
-                          SelectedItem="{Binding ToLanguage}" />
+            <!-- Center Navigation Menu with Buttons -->
+            <StackPanel Grid.Column="1" 
+                        Orientation="Horizontal" 
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+
+                <!-- Home Button -->
+                <Button x:Name="HomeButton"
+                        Width="120" 
+                        Height="45"
+                        FontSize="15" 
+                        FontWeight="Medium"
+                        Foreground="#333333" 
+                        BorderThickness="1"
+                        BorderBrush="#DDDDDD"
+                        Background="White"
+                        Click="HomeButton_Click"
+                        Cursor="Hand"
+                        Margin="0,0,15,0">
+                    <Button.Content>
+                        <TextBlock Text="🏠 Home"/>
+                    </Button.Content>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="border"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="22"
+                                    Padding="15,8">
+                                <ContentPresenter HorizontalAlignment="Center" 
+                                                  VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="#F5F5F5"/>
+                                    <Setter TargetName="border" Property="BorderBrush" Value="#333333"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <!-- Dictionary Button -->
+                <Button x:Name="DictionaryButton"
+                        Width="150" 
+                        Height="45"
+                        FontSize="15" 
+                        FontWeight="Medium"
+                        Foreground="White" 
+                        BorderThickness="0"
+                        Background="#2C2C2C"
+                        Click="DictionaryPage_Click"
+                        Cursor="Hand"
+                        Margin="0,0,15,0">
+                    <Button.Content>
+                        <TextBlock Text="📚 Dictionary"/>
+                    </Button.Content>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="border"
+                                    Background="{TemplateBinding Background}"
+                                    CornerRadius="22"
+                                    Padding="15,8">
+                                <ContentPresenter HorizontalAlignment="Center" 
+                                                  VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="#1A1A1A"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <!-- Game Button -->
+                <Button x:Name="GameButton"
+                        Width="140" 
+                        Height="45"
+                        FontSize="15" 
+                        FontWeight="Medium"
+                        Foreground="White" 
+                        BorderThickness="0"
+                        Background="#8B7355"
+                        Click="GamePage_Click"
+                        Cursor="Hand">
+                    <Button.Content>
+                        <TextBlock Text="🎮 Games"/>
+                    </Button.Content>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="border"
+                                    Background="{TemplateBinding Background}"
+                                    CornerRadius="22"
+                                    Padding="15,8">
+                                <ContentPresenter HorizontalAlignment="Center" 
+                                                  VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="#6F5B42"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
             </StackPanel>
 
-            <!-- Difficulty -->
-            <StackPanel Orientation="Horizontal" Margin="0,15">
-                <TextBlock Text="Difficulty:" Width="80" VerticalAlignment="Center"/>
-                <ComboBox Width="150"
-                          ItemsSource="{Binding Difficulties}"
-                          SelectedItem="{Binding Difficulty}" />
+            <!-- Menu Icon -->
+            <Border Grid.Column="2" 
+                    Width="35" 
+                    Height="35"
+                    Background="Transparent" 
+                    BorderBrush="#DDDDDD"
+                    BorderThickness="1" 
+                    CornerRadius="8"
+                    Cursor="Hand" 
+                    Margin="0,0,40,0"
+                    VerticalAlignment="Center">
+                <TextBlock Text="☰" 
+                           FontSize="18" 
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" 
+                           Foreground="#333333"/>
+            </Border>
+        </Grid>
+
+        <!-- Main Content Area -->
+        <Grid Margin="0,80,0,100">
+            <StackPanel VerticalAlignment="Center" 
+                        HorizontalAlignment="Center"
+                        MaxWidth="900">
+
+                <!-- Header Section -->
+                <StackPanel HorizontalAlignment="Center" Margin="0,0,0,40">
+                    <TextBlock FontSize="18" 
+                               Foreground="#999999"
+                               TextAlignment="Center"
+                               Margin="0,0,0,10">
+                        <Run Text="configure your" 
+                             Foreground="#333333" 
+                             FontWeight="SemiBold"/>
+                        <Run Text="test."/>
+                    </TextBlock>
+
+                    <TextBlock Text="Test Configuration"
+                               FontSize="36"
+                               FontWeight="Bold" 
+                               Foreground="#111111"
+                               TextAlignment="Center"
+                               Margin="0,0,0,20"/>
+
+                    <TextBlock Text="Choose your preferred language settings and difficulty level for the vocabulary test."
+                               FontSize="16"
+                               Foreground="#666666" 
+                               TextWrapping="Wrap"
+                               LineHeight="24"
+                               TextAlignment="Center"
+                               MaxWidth="500"/>
+                </StackPanel>
+
+                <!-- Configuration Card -->
+                <Border Style="{StaticResource ConfigCardStyle}"
+                        Width="500"
+                        HorizontalAlignment="Center">
+                    <StackPanel>
+
+                        <!-- Language Selection Section -->
+                        <TextBlock Text="🌐 Language Settings"
+                                   FontSize="20"
+                                   FontWeight="Bold"
+                                   Foreground="#333333"
+                                   Margin="0,0,0,25"/>
+
+                        <!-- From Language -->
+                        <StackPanel Orientation="Horizontal" 
+                                    Margin="0,0,0,20"
+                                    HorizontalAlignment="Left">
+                            <TextBlock Text="🌍" 
+                                       Style="{StaticResource LanguageIconStyle}"/>
+                            <StackPanel>
+                                <TextBlock Text="Translate From:"
+                                           FontSize="14"
+                                           FontWeight="Medium"
+                                           Foreground="#666666"
+                                           Margin="0,0,0,5"/>
+                                <ComboBox Style="{StaticResource ConfigComboBoxStyle}"
+                                          ItemsSource="{Binding Languages}"
+                                          SelectedItem="{Binding FromLanguage}"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <!-- Arrow Icon between languages -->
+                        <TextBlock Text="↓"
+                                   FontSize="24"
+                                   Foreground="#4A90E2"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,5,0,15"/>
+
+                        <!-- To Language -->
+                        <StackPanel Orientation="Horizontal" 
+                                    Margin="0,0,0,30"
+                                    HorizontalAlignment="Left">
+                            <TextBlock Text="🎯" 
+                                       Style="{StaticResource LanguageIconStyle}"/>
+                            <StackPanel>
+                                <TextBlock Text="Translate To:"
+                                           FontSize="14"
+                                           FontWeight="Medium"
+                                           Foreground="#666666"
+                                           Margin="0,0,0,5"/>
+                                <ComboBox Style="{StaticResource ConfigComboBoxStyle}"
+                                          ItemsSource="{Binding Languages}"
+                                          SelectedItem="{Binding ToLanguage}"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <!-- Difficulty Section -->
+                        <StackPanel Orientation="Horizontal" 
+                                    Margin="0,20,0,30"
+                                    HorizontalAlignment="Left">
+                            <TextBlock Text="📊" 
+                                       Style="{StaticResource LanguageIconStyle}"/>
+                            <StackPanel>
+                                <TextBlock Text="Test Difficulty:"
+                                           FontSize="14"
+                                           FontWeight="Medium"
+                                           Foreground="#666666"
+                                           Margin="0,0,0,5"/>
+                                <ComboBox Style="{StaticResource ConfigComboBoxStyle}"
+                                          ItemsSource="{Binding Difficulties}"
+                                          SelectedItem="{Binding Difficulty}"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                       
+
+                        <!-- Validation Message -->
+                        <TextBlock Text="⚠️ Please select different languages for source and target."
+                                   FontSize="13"
+                                   Foreground="#E74C3C"
+                                   TextWrapping="Wrap"
+                                   Margin="0,10,0,0"/>
+
+                        <!-- Start Test Button -->
+                        <Button Style="{StaticResource StartButtonStyle}"
+                                Content="🚀 Start Test"
+                                Click="StartTest_Click"
+                                HorizontalAlignment="Center"
+                                Margin="0,20,0,0"
+                                IsEnabled="{Binding CanStartTest}"/>
+
+                    </StackPanel>
+                </Border>
+
+                <!-- Quick Tip -->
+                <TextBlock Text="💡 Tip: Choose languages you're comfortable with and a difficulty that matches your skill level."
+                           FontSize="14"
+                           Foreground="#888888"
+                           TextWrapping="Wrap"
+                           TextAlignment="Center"
+                           Margin="0,30,0,0"
+                           MaxWidth="500"
+                           HorizontalAlignment="Center"/>
+
+            </StackPanel>
+        </Grid>
+
+        <!-- Bottom Section (Black Bar) -->
+        <Grid Height="100" 
+              VerticalAlignment="Bottom" 
+              Background="#1A1A1A">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Author/Creator Info -->
+            <StackPanel Grid.Column="0" 
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center" 
+                        Margin="40,0,0,0">
+                <Ellipse Width="45" 
+                         Height="45" 
+                         Fill="#555555"
+                         Margin="0,0,15,0"/>
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="Sobitov Sardor" 
+                               FontSize="12"
+                               FontWeight="SemiBold" 
+                               Foreground="White"/>
+                    <TextBlock Text="UX/UI DESIGNER AND INTERACTIVE DEVELOPER"
+                               FontSize="9" 
+                               Foreground="#888888"/>
+                </StackPanel>
             </StackPanel>
 
-            <!-- Start Button -->
-            <Button Content="Start Test"
-                    Width="200"
-                    Height="40"
-                    Margin="0,20,0,0"
-                    Background="#4A90E2"
-                    Foreground="White"
-                    FontWeight="Bold"
-                    Click="StartTest_Click"/>
-        </StackPanel>
+            <!-- Navigation Info -->
+            <StackPanel Grid.Column="2" 
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center" 
+                        Margin="0,0,40,0">
+                <Ellipse Width="8" Height="8" Fill="#666666" Margin="0,0,8,0"/>
+                <Ellipse Width="8" Height="8" Fill="White" Margin="0,0,8,0"/>
+                <Ellipse Width="8" Height="8" Fill="#666666"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

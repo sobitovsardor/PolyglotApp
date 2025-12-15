@@ -1,63 +1,481 @@
 ﻿<Page x:Class="PolyglotApp.Desktop.Pages.TestResultPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Title="TestResultPage">
+      xmlns:conv="clr-namespace:System.Windows;assembly=PresentationFramework"
+      Title="TestResultPage"
+      Background="White">
 
-    <Grid Background="White" Margin="20">
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="500">
+    <Page.Resources>
+        <!-- Boolean to Visibility Converter -->
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
-            <TextBlock Text="Test Results"
-                       FontSize="28"
-                       FontWeight="Bold"
-                       Foreground="#333"
-                       TextAlignment="Center"
-                       Margin="0,0,0,20"/>
+        <!-- Score Display Style -->
+        <Style x:Key="ScoreTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="48"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
 
-            <TextBlock Text="{Binding SectionTitle}" FontSize="18" FontWeight="SemiBold" TextAlignment="Center"/>
-            <TextBlock Text="{Binding UnitTitle}" FontSize="16" Foreground="#666" TextAlignment="Center" Margin="0,0,0,10"/>
+        <!-- Back Button Style -->
+        <Style x:Key="BackButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#4A90E2"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="22"
+                                Padding="15,8">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#357ABD"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
 
-            <TextBlock Text="{Binding Difficulty}" FontSize="16" FontWeight="SemiBold" TextAlignment="Center"/>
-            <TextBlock Text="Score:" FontSize="16" FontWeight="SemiBold" Margin="0,10,0,0" TextAlignment="Center"/>
-            <TextBlock FontSize="20" FontWeight="Bold" Foreground="#4A90E2" TextAlignment="Center">
-                <TextBlock.Text>
-                    <MultiBinding StringFormat="{}{0} / {1}">
-                        <Binding Path="CorrectAnswers"/>
-                        <Binding Path="TotalQuestions"/>
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
+    <Grid>
+        <!-- Top Navigation Bar -->
+        <Grid Height="80" 
+              VerticalAlignment="Top"
+              Background="White">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
 
-            <TextBlock Text="Time Taken:" FontSize="16" FontWeight="SemiBold" Margin="0,10,0,0" TextAlignment="Center"/>
-            <TextBlock Text="{Binding TimeTaken}" FontSize="16" TextAlignment="Center" Foreground="#666"/>
+            <!-- Logo -->
+            <StackPanel Grid.Column="0" 
+                        Orientation="Horizontal" 
+                        VerticalAlignment="Center"
+                        Margin="40,0,0,0"
+                        Cursor="Hand">
+                <Ellipse Width="35" 
+                         Height="35" 
+                         Fill="#333333"/>
+                <TextBlock Text="P" 
+                           FontSize="24" 
+                           FontWeight="Bold" 
+                           Foreground="White"
+                           Margin="-27,0,0,0"
+                           VerticalAlignment="Center"/>
+            </StackPanel>
 
-            <TextBlock Text="Mistakes:" FontSize="18" FontWeight="SemiBold" Margin="0,20,0,10" TextAlignment="Center"/>
+            <!-- Center Navigation Menu with Buttons -->
+            <StackPanel Grid.Column="1" 
+                        Orientation="Horizontal" 
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
 
-            <ListBox ItemsSource="{Binding Mistakes}" BorderThickness="0">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal" Margin="5">
-                            <TextBlock Text="{Binding WordText}" FontWeight="SemiBold" Foreground="#E74C3C"/>
-                            <TextBlock Text=" → " Margin="5,0"/>
-                            <TextBlock Text="{Binding CorrectTranslation}" Foreground="#2ECC71"/>
-                            <TextBlock Text=" (You wrote: " Foreground="#666"/>
-                            <TextBlock Text="{Binding UserAnswer}" Foreground="#E67E22"/>
-                            <TextBlock Text=")" Foreground="#666"/>
+                <!-- Home Button -->
+                <Button x:Name="HomeButton"
+                        Width="120" 
+                        Height="45"
+                        FontSize="15" 
+                        FontWeight="Medium"
+                        Foreground="#333333" 
+                        BorderThickness="1"
+                        BorderBrush="#DDDDDD"
+                        Background="White"
+                        Click="HomeButton_Click"
+                        Cursor="Hand"
+                        Margin="0,0,15,0">
+                    <Button.Content>
+                        <TextBlock Text="🏠 Home"/>
+                    </Button.Content>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="border"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="22"
+                                    Padding="15,8">
+                                <ContentPresenter HorizontalAlignment="Center" 
+                                                  VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="#F5F5F5"/>
+                                    <Setter TargetName="border" Property="BorderBrush" Value="#333333"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <!-- Dictionary Button -->
+                <Button x:Name="DictionaryButton"
+                        Width="150" 
+                        Height="45"
+                        FontSize="15" 
+                        FontWeight="Medium"
+                        Foreground="White" 
+                        BorderThickness="0"
+                        Background="#2C2C2C"
+                        Click="DictionaryPage_Click"
+                        Cursor="Hand"
+                        Margin="0,0,15,0">
+                    <Button.Content>
+                        <TextBlock Text="📚 Dictionary"/>
+                    </Button.Content>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="border"
+                                    Background="{TemplateBinding Background}"
+                                    CornerRadius="22"
+                                    Padding="15,8">
+                                <ContentPresenter HorizontalAlignment="Center" 
+                                                  VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="#1A1A1A"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <!-- Game Button -->
+                <Button x:Name="GameButton"
+                        Width="140" 
+                        Height="45"
+                        FontSize="15" 
+                        FontWeight="Medium"
+                        Foreground="White" 
+                        BorderThickness="0"
+                        Background="#8B7355"
+                        Click="GamePage_Click"
+                        Cursor="Hand">
+                    <Button.Content>
+                        <TextBlock Text="🎮 Games"/>
+                    </Button.Content>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="border"
+                                    Background="{TemplateBinding Background}"
+                                    CornerRadius="22"
+                                    Padding="15,8">
+                                <ContentPresenter HorizontalAlignment="Center" 
+                                                  VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="#6F5B42"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+
+            <!-- Menu Icon -->
+            <Border Grid.Column="2" 
+                    Width="35" 
+                    Height="35"
+                    Background="Transparent" 
+                    BorderBrush="#DDDDDD"
+                    BorderThickness="1" 
+                    CornerRadius="8"
+                    Cursor="Hand" 
+                    Margin="0,0,40,0"
+                    VerticalAlignment="Center">
+                <TextBlock Text="☰" 
+                           FontSize="18" 
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" 
+                           Foreground="#333333"/>
+            </Border>
+        </Grid>
+
+        <!-- Main Content Area with Scrolling -->
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Disabled"
+                      Margin="0,80,0,100">
+            <StackPanel VerticalAlignment="Top" 
+                        HorizontalAlignment="Center"
+                        MaxWidth="900"
+                        Margin="0,30,0,40">
+
+                <!-- Header Section -->
+                <StackPanel HorizontalAlignment="Center" Margin="0,0,0,30">
+                    <TextBlock FontSize="18" 
+                               Foreground="#999999"
+                               TextAlignment="Center"
+                               Margin="0,0,0,10">
+                        <Run Text="test" 
+                             Foreground="#333333" 
+                             FontWeight="SemiBold"/>
+                        <Run Text="completed."/>
+                    </TextBlock>
+
+                    <TextBlock Text="Test Results"
+                               FontSize="36"
+                               FontWeight="Bold" 
+                               Foreground="#111111"
+                               TextAlignment="Center"
+                               Margin="0,0,0,15"/>
+                </StackPanel>
+
+                <!-- Test Info Card -->
+                <Border Background="White"
+                        BorderBrush="#DDDDDD"
+                        BorderThickness="1"
+                        CornerRadius="15"
+                        Padding="30"
+                        Margin="0,0,0,30"
+                        Width="600">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="10" 
+                                          ShadowDepth="2" 
+                                          Color="Black" 
+                                          Opacity="0.08"/>
+                    </Border.Effect>
+                    <StackPanel>
+                        <!-- Test Details -->
+                        <TextBlock Text="{Binding SectionTitle}" 
+                                   FontSize="22"
+                                   FontWeight="Bold"
+                                   Foreground="#333333"
+                                   TextAlignment="Center"
+                                   Margin="0,0,0,5"/>
+
+                        <TextBlock Text="{Binding UnitTitle}" 
+                                   FontSize="18"
+                                   Foreground="#666666"
+                                   TextAlignment="Center"
+                                   Margin="0,0,0,20"/>
+
+                        <TextBlock Text="{Binding Difficulty}" 
+                                   FontSize="16"
+                                   FontWeight="SemiBold"
+                                   Foreground="#8B7355"
+                                   TextAlignment="Center"
+                                   Margin="0,0,0,20"/>
+
+                        <!-- Score Circle -->
+                        <Border Width="150"
+                                Height="150"
+                                CornerRadius="75"
+                                Background="#F0F8FF"
+                                BorderThickness="3"
+                                BorderBrush="#4A90E2"
+                                HorizontalAlignment="Center"
+                                Margin="0,0,0,20">
+                            <Viewbox>
+                                <StackPanel>
+                                    <TextBlock Style="{StaticResource ScoreTextStyle}"
+                                               Foreground="#4A90E2">
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="{}{0}/{1}">
+                                                <Binding Path="CorrectAnswers"/>
+                                                <Binding Path="TotalQuestions"/>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                    <TextBlock Text="Score"
+                                               FontSize="14"
+                                               Foreground="#666666"
+                                               HorizontalAlignment="Center"/>
+                                </StackPanel>
+                            </Viewbox>
+                        </Border>
+
+                        <!-- Percentage -->
+                        <TextBlock FontSize="24"
+                                   FontWeight="Bold"
+                                   Foreground="#2ECC71"
+                                   TextAlignment="Center"
+                                   Margin="0,0,0,10">
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0:0}%">
+                                    <Binding Path="Percentage"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+
+                        <!-- Time Taken -->
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Center"
+                                    Margin="0,20,0,10">
+                            <TextBlock Text="⏱️"
+                                       FontSize="18"
+                                       Margin="0,0,10,0"/>
+                            <TextBlock Text="Time taken: "
+                                       FontSize="16"
+                                       Foreground="#666666"/>
+                            <TextBlock Text="{Binding TimeTaken}"
+                                       FontSize="16"
+                                       FontWeight="SemiBold"
+                                       Foreground="#333333"
+                                       Margin="5,0,0,0"/>
                         </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                    </StackPanel>
+                </Border>
 
-            <Button Content="⬅ Back to Units"
-                    Width="200"
-                    Height="45"
-                    FontSize="16"
-                    FontWeight="SemiBold"
-                    Margin="0,20,0,0"
-                    Background="#4A90E2"
-                    Foreground="White"
-                    BorderThickness="0"
-                    Cursor="Hand"
-                    Click="BackToUnits_Click"/>
-        </StackPanel>
+                <!-- Mistakes Section (if any) -->
+                <Border Visibility="{Binding HasMistakes, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        Background="White"
+                        BorderBrush="#DDDDDD"
+                        BorderThickness="1"
+                        CornerRadius="15"
+                        Padding="30"
+                        Margin="0,0,0,30"
+                        Width="600">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="10" 
+                                          ShadowDepth="2" 
+                                          Color="Black" 
+                                          Opacity="0.08"/>
+                    </Border.Effect>
+                    <StackPanel>
+                        <TextBlock Text="📝 Mistakes to Review"
+                                   FontSize="20"
+                                   FontWeight="Bold"
+                                   Foreground="#E74C3C"
+                                   TextAlignment="Center"
+                                   Margin="0,0,0,20"/>
+
+                        <ItemsControl ItemsSource="{Binding Mistakes}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Background="#FFF5F5"
+                                            CornerRadius="8"
+                                            Padding="15,10"
+                                            Margin="0,0,0,10">
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding WordText}"
+                                                       FontSize="16"
+                                                       FontWeight="Bold"
+                                                       Foreground="#333333"/>
+
+                                            <StackPanel Orientation="Horizontal"
+                                                        Margin="0,5,0,0">
+                                                <TextBlock Text="Correct: "
+                                                           FontSize="14"
+                                                           Foreground="#666666"/>
+                                                <TextBlock Text="{Binding CorrectTranslation}"
+                                                           FontSize="14"
+                                                           FontWeight="SemiBold"
+                                                           Foreground="#2ECC71"/>
+                                            </StackPanel>
+
+                                            <StackPanel Orientation="Horizontal"
+                                                        Margin="0,2,0,0">
+                                                <TextBlock Text="Your answer: "
+                                                           FontSize="14"
+                                                           Foreground="#666666"/>
+                                                <TextBlock Text="{Binding UserAnswer}"
+                                                           FontSize="14"
+                                                           FontStyle="Italic"
+                                                           Foreground="#E67E22"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+
+                <!-- Success Message (if perfect score) -->
+                <Border Visibility="{Binding IsPerfectScore, Converter={StaticResource BooleanToVisibilityConverter}}"
+                        Background="#F0FFF4"
+                        BorderBrush="#2ECC71"
+                        BorderThickness="1"
+                        CornerRadius="15"
+                        Padding="30"
+                        Margin="0,0,0,30"
+                        Width="600">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="10" 
+                                          ShadowDepth="2" 
+                                          Color="#2ECC71" 
+                                          Opacity="0.15"/>
+                    </Border.Effect>
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock Text="🎉 Perfect Score!"
+                                   FontSize="24"
+                                   FontWeight="Bold"
+                                   Foreground="#27AE60"
+                                   TextAlignment="Center"
+                                   Margin="0,0,0,10"/>
+                        <TextBlock Text="Excellent work! You've mastered this unit."
+                                   FontSize="16"
+                                   Foreground="#666666"
+                                   TextAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Action Buttons -->
+                <StackPanel HorizontalAlignment="Center"
+                            Margin="0,30,0,0">
+                    <Button Style="{StaticResource BackButtonStyle}"
+                            Content="⬅ Back to Units"
+                            Click="BackToUnits_Click"
+                            Margin="0,0,0,15"/>
+
+                    
+                </StackPanel>
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Bottom Section (Black Bar) -->
+        <Grid Height="100" 
+              VerticalAlignment="Bottom" 
+              Background="#1A1A1A">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Author/Creator Info -->
+            <StackPanel Grid.Column="0" 
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center" 
+                        Margin="40,0,0,0">
+                <Ellipse Width="45" 
+                         Height="45" 
+                         Fill="#555555"
+                         Margin="0,0,15,0"/>
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="Sobitov Sardor" 
+                               FontSize="12"
+                               FontWeight="SemiBold" 
+                               Foreground="White"/>
+                    <TextBlock Text="UX/UI DESIGNER AND INTERACTIVE DEVELOPER"
+                               FontSize="9" 
+                               Foreground="#888888"/>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Navigation Info -->
+            <StackPanel Grid.Column="2" 
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center" 
+                        Margin="0,0,40,0">
+                <Ellipse Width="8" Height="8" Fill="#666666" Margin="0,0,8,0"/>
+                <Ellipse Width="8" Height="8" Fill="White" Margin="0,0,8,0"/>
+                <Ellipse Width="8" Height="8" Fill="#666666"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>
