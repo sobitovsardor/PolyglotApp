@@ -7,442 +7,442 @@
         "words": [
           {
             "uz": {
-              "text": "uzbek_word_1_1_1",
-              "pronounce": "uz_pronounce_1_1_1",
-              "description": "uz_description_1_1_1"
+              "text": "abadiy",
+              "pronounce": "abadiy",
+              "description": "hech qachon tugamaydigan, doimiy"
             },
             "ru": {
-              "text": "russian_word_1_1_1",
-              "pronounce": "ru_pronounce_1_1_1",
-              "description": "ru_description_1_1_1"
+              "text": "вечный",
+              "pronounce": "vechnyy",
+              "description": "тот, что никогда не кончается"
             },
             "eng": {
-              "text": "english_word_1_1_1",
-              "pronounce": "eng_pronounce_1_1_1",
-              "description": "eng_description_1_1_1"
+              "text": "eternal",
+              "pronounce": "ɪˈtɜːrnəl",
+              "description": "lasting forever"
             },
             "de": {
-              "text": "german_word_1_1_1",
-              "pronounce": "de_pronounce_1_1_1",
-              "description": "de_description_1_1_1"
+              "text": "ewig",
+              "pronounce": "ˈeːvɪç",
+              "description": "unendlich lange dauernd"
             }
           },
           {
             "uz": {
-              "text": "uzbek_word_1_1_2",
-              "pronounce": "uz_pronounce_1_1_2",
-              "description": "uz_description_1_1_2"
+              "text": "ahamiyat",
+              "pronounce": "ahamiyat",
+              "description": "muhimlik, ahamiyat"
             },
             "ru": {
-              "text": "russian_word_1_1_2",
-              "pronounce": "ru_pronounce_1_1_2",
-              "description": "ru_description_1_1_2"
+              "text": "значение",
+              "pronounce": "znacheniye",
+              "description": "важность, смысл"
             },
             "eng": {
-              "text": "english_word_1_1_2",
-              "pronounce": "eng_pronounce_1_1_2",
-              "description": "eng_description_1_1_2"
+              "text": "significance",
+              "pronounce": "sɪɡˈnɪfɪkəns",
+              "description": "the quality of being important"
             },
             "de": {
-              "text": "german_word_1_1_2",
-              "pronounce": "de_pronounce_1_1_2",
-              "description": "de_description_1_1_2"
+              "text": "Bedeutung",
+              "pronounce": "bəˈdɔɪ̯tʊŋ",
+              "description": "Wichtigkeit, Sinn"
             }
           },
           {
             "uz": {
-              "text": "uzbek_word_1_1_3",
-              "pronounce": "uz_pronounce_1_1_3",
-              "description": "uz_description_1_1_3"
+              "text": "ajoyib",
+              "pronounce": "ajoyib",
+              "description": "g‘alat, qiziq"
             },
             "ru": {
-              "text": "russian_word_1_1_3",
-              "pronounce": "ru_pronounce_1_1_3",
-              "description": "ru_description_1_1_3"
+              "text": "удивительный",
+              "pronounce": "udivitelnyy",
+              "description": "вызывающий удивление"
             },
             "eng": {
-              "text": "english_word_1_1_3",
-              "pronounce": "eng_pronounce_1_1_3",
-              "description": "eng_description_1_1_3"
+              "text": "amazing",
+              "pronounce": "əˈmeɪzɪŋ",
+              "description": "causing great surprise"
             },
             "de": {
-              "text": "german_word_1_1_3",
-              "pronounce": "de_pronounce_1_1_3",
-              "description": "de_description_1_1_3"
+              "text": "erstaunlich",
+              "pronounce": "ɛɐ̯ˈʃtaʊ̯nlɪç",
+              "description": "überraschend, erstaunlich"
             }
           },
           {
             "uz": {
-              "text": "uzbek_word_1_1_4",
-              "pronounce": "uz_pronounce_1_1_4",
-              "description": "uz_description_1_1_4"
+              "text": "aniq",
+              "pronounce": "aniq",
+              "description": "ravshan, aniq"
             },
             "ru": {
-              "text": "russian_word_1_1_4",
-              "pronounce": "ru_pronounce_1_1_4",
-              "description": "ru_description_1_1_4"
+              "text": "точный",
+              "pronounce": "tochnyy",
+              "description": "чёткий, ясный"
             },
             "eng": {
-              "text": "english_word_1_1_4",
-              "pronounce": "eng_pronounce_1_1_4",
-              "description": "eng_description_1_1_4"
+              "text": "precise",
+              "pronounce": "prɪˈsaɪs",
+              "description": "exact and accurate"
             },
             "de": {
-              "text": "german_word_1_1_4",
-              "pronounce": "de_pronounce_1_1_4",
-              "description": "de_description_1_1_4"
+              "text": "präzise",
+              "pronounce": "pʁɛˈt͡siːzə",
+              "description": "genau, exakt"
             }
           },
           {
             "uz": {
-              "text": "uzbek_word_1_1_5",
-              "pronounce": "uz_pronounce_1_1_5",
-              "description": "uz_description_1_1_5"
+              "text": "asos",
+              "pronounce": "asos",
+              "description": "po‘st, negiz"
             },
             "ru": {
-              "text": "russian_word_1_1_5",
-              "pronounce": "ru_pronounce_1_1_5",
-              "description": "ru_description_1_1_5"
+              "text": "основа",
+              "pronounce": "osnova",
+              "description": "фундамент, основание"
             },
             "eng": {
-              "text": "english_word_1_1_5",
-              "pronounce": "eng_pronounce_1_1_5",
-              "description": "eng_description_1_1_5"
+              "text": "basis",
+              "pronounce": "ˈbeɪsɪs",
+              "description": "the foundation of something"
             },
             "de": {
-              "text": "german_word_1_1_5",
-              "pronounce": "de_pronounce_1_1_5",
-              "description": "de_description_1_1_5"
+              "text": "Grundlage",
+              "pronounce": "ˈɡʁʊntlaːɡə",
+              "description": "Basis, Fundament"
             }
           },
           {
             "uz": {
-              "text": "uzbek_word_1_1_6",
-              "pronounce": "uz_pronounce_1_1_6",
-              "description": "uz_description_1_1_6"
+              "text": "bahslashmoq",
+              "pronounce": "bahslashmoq",
+              "description": "muhokama qilmoq, tortishmoq"
             },
             "ru": {
-              "text": "russian_word_1_1_6",
-              "pronounce": "ru_pronounce_1_1_6",
-              "description": "ru_description_1_1_6"
+              "text": "спорить",
+              "pronounce": "sporit",
+              "description": "вести дискуссию"
             },
             "eng": {
-              "text": "english_word_1_1_6",
-              "pronounce": "eng_pronounce_1_1_6",
-              "description": "eng_description_1_1_6"
+              "text": "argue",
+              "pronounce": "ˈɑːrɡjuː",
+              "description": "to exchange opposing views"
             },
             "de": {
-              "text": "german_word_1_1_6",
-              "pronounce": "de_pronounce_1_1_6",
-              "description": "de_description_1_1_6"
+              "text": "streiten",
+              "pronounce": "ˈʃtʁaɪ̯tn̩",
+              "description": "sich auseinandersetzen"
             }
           },
           {
             "uz": {
-              "text": "uzbek_word_1_1_7",
-              "pronounce": "uz_pronounce_1_1_7",
-              "description": "uz_description_1_1_7"
+              "text": "birlik",
+              "pronounce": "birlik",
+              "description": "birlashtirilgan holat"
             },
             "ru": {
-              "text": "russian_word_1_1_7",
-              "pronounce": "ru_pronounce_1_1_7",
-              "description": "ru_description_1_1_7"
+              "text": "единство",
+              "pronounce": "yedinstvo",
+              "description": "состояние единства"
             },
             "eng": {
-              "text": "english_word_1_1_7",
-              "pronounce": "eng_pronounce_1_1_7",
-              "description": "eng_description_1_1_7"
+              "text": "unity",
+              "pronounce": "ˈjuːnɪti",
+              "description": "the state of being united"
             },
             "de": {
-              "text": "german_word_1_1_7",
-              "pronounce": "de_pronounce_1_1_7",
-              "description": "de_description_1_1_7"
+              "text": "Einheit",
+              "pronounce": "ˈaɪ̯nhaɪ̯t",
+              "description": "Zustand des Vereintseins"
             }
           },
           {
             "uz": {
-              "text": "uzbek_word_1_1_8",
-              "pronounce": "uz_pronounce_1_1_8",
-              "description": "uz_description_1_1_8"
+              "text": "bo‘sh",
+              "pronounce": "bo‘sh",
+              "description": "band emas, erkin"
             },
             "ru": {
-              "text": "russian_word_1_1_8",
-              "pronounce": "ru_pronounce_1_1_8",
-              "description": "ru_description_1_1_8"
+              "text": "свободный",
+              "pronounce": "svobodnyy",
+              "description": "не занятый"
             },
             "eng": {
-              "text": "english_word_1_1_8",
-              "pronounce": "eng_pronounce_1_1_8",
-              "description": "eng_description_1_1_8"
+              "text": "free",
+              "pronounce": "friː",
+              "description": "not occupied"
             },
             "de": {
-              "text": "german_word_1_1_8",
-              "pronounce": "de_pronounce_1_1_8",
-              "description": "de_description_1_1_8"
+              "text": "frei",
+              "pronounce": "fʁaɪ̯",
+              "description": "unbesetzt, verfügbar"
             }
           },
           {
             "uz": {
-              "text": "uzbek_word_1_1_9",
-              "pronounce": "uz_pronounce_1_1_9",
-              "description": "uz_description_1_1_9"
+              "text": "davom",
+              "pronounce": "davom",
+              "description": "davom etish, ketma-ketlik"
             },
             "ru": {
-              "text": "russian_word_1_1_9",
-              "pronounce": "ru_pronounce_1_1_9",
-              "description": "ru_description_1_1_9"
+              "text": "продолжение",
+              "pronounce": "prodolzheniye",
+              "description": "непрерывность"
             },
             "eng": {
-              "text": "english_word_1_1_9",
-              "pronounce": "eng_pronounce_1_1_9",
-              "description": "eng_description_1_1_9"
+              "text": "continuation",
+              "pronounce": "kənˌtɪnjuˈeɪʃən",
+              "description": "the act of continuing"
             },
             "de": {
-              "text": "german_word_1_1_9",
-              "pronounce": "de_pronounce_1_1_9",
-              "description": "de_description_1_1_9"
+              "text": "Fortsetzung",
+              "pronounce": "ˈfɔʁtzɛt͡sʊŋ",
+              "description": "Weiterführung"
             }
           },
           {
             "uz": {
-              "text": "uzbek_word_1_1_10",
-              "pronounce": "uz_pronounce_1_1_10",
-              "description": "uz_description_1_1_10"
+              "text": "ehtiyot",
+              "pronounce": "ehtiyot",
+              "description": "ehtiyotkorlik, saqlash"
             },
             "ru": {
-              "text": "russian_word_1_1_10",
-              "pronounce": "ru_pronounce_1_1_10",
-              "description": "ru_description_1_1_10"
+              "text": "осторожность",
+              "pronounce": "ostorozhnost",
+              "description": "бережливость"
             },
             "eng": {
-              "text": "english_word_1_1_10",
-              "pronounce": "eng_pronounce_1_1_10",
-              "description": "eng_description_1_1_10"
+              "text": "caution",
+              "pronounce": "ˈkɔːʃən",
+              "description": "care taken to avoid danger"
             },
             "de": {
-              "text": "german_word_1_1_10",
-              "pronounce": "de_pronounce_1_1_10",
-              "description": "de_description_1_1_10"
+              "text": "Vorsicht",
+              "pronounce": "ˈfoːɐ̯zɪçt",
+              "description": "Umsicht, Behutsamkeit"
             }
           },
           {
             "uz": {
-              "text": "uzbek_word_1_1_11",
-              "pronounce": "uz_pronounce_1_1_11",
-              "description": "uz_description_1_1_11"
+              "text": "farq",
+              "pronounce": "farq",
+              "description": "tafovut, farqlilik"
             },
             "ru": {
-              "text": "russian_word_1_1_11",
-              "pronounce": "ru_pronounce_1_1_11",
-              "description": "ru_description_1_1_11"
+              "text": "разница",
+              "pronounce": "raznitsa",
+              "description": "отличие"
             },
             "eng": {
-              "text": "english_word_1_1_11",
-              "pronounce": "eng_pronounce_1_1_11",
-              "description": "eng_description_1_1_11"
+              "text": "difference",
+              "pronounce": "ˈdɪfrəns",
+              "description": "a point or way in which things differ"
             },
             "de": {
-              "text": "german_word_1_1_11",
-              "pronounce": "de_pronounce_1_1_11",
-              "description": "de_description_1_1_11"
+              "text": "Unterschied",
+              "pronounce": "ˈʊntɐʃiːt",
+              "description": "Differenz, Abweichung"
             }
           },
           {
             "uz": {
-              "text": "uzbek_word_1_1_12",
-              "pronounce": "uz_pronounce_1_1_12",
-              "description": "uz_description_1_1_12"
+              "text": "fikr",
+              "pronounce": "fikr",
+              "description": "o‘y, mulohaza"
             },
             "ru": {
-              "text": "russian_word_1_1_12",
-              "pronounce": "ru_pronounce_1_1_12",
-              "description": "ru_description_1_1_12"
+              "text": "мысль",
+              "pronounce": "mysl",
+              "description": "идея, мнение"
             },
             "eng": {
-              "text": "english_word_1_1_12",
-              "pronounce": "eng_pronounce_1_1_12",
-              "description": "eng_description_1_1_12"
+              "text": "thought",
+              "pronounce": "θɔːt",
+              "description": "an idea or opinion"
             },
             "de": {
-              "text": "german_word_1_1_12",
-              "pronounce": "de_pronounce_1_1_12",
-              "description": "de_description_1_1_12"
+              "text": "Gedanke",
+              "pronounce": "ɡəˈdaŋkə",
+              "description": "Idee, Meinung"
             }
           },
           {
             "uz": {
-              "text": "uzbek_word_1_1_13",
-              "pronounce": "uz_pronounce_1_1_13",
-              "description": "uz_description_1_1_13"
+              "text": "garov",
+              "pronounce": "garov",
+              "description": "kafolat, garov"
             },
             "ru": {
-              "text": "russian_word_1_1_13",
-              "pronounce": "ru_pronounce_1_1_13",
-              "description": "ru_description_1_1_13"
+              "text": "залог",
+              "pronounce": "zalog",
+              "description": "обеспечение"
             },
             "eng": {
-              "text": "english_word_1_1_13",
-              "pronounce": "eng_pronounce_1_1_13",
-              "description": "eng_description_1_1_13"
+              "text": "pledge",
+              "pronounce": "pledʒ",
+              "description": "a solemn promise"
             },
             "de": {
-              "text": "german_word_1_1_13",
-              "pronounce": "de_pronounce_1_1_13",
-              "description": "de_description_1_1_13"
+              "text": "Verpfändung",
+              "pronounce": "fɛɐ̯ˈp͡fɛndʊŋ",
+              "description": "Sicherheitsleistung"
             }
           },
           {
             "uz": {
-              "text": "uzbek_word_1_1_14",
-              "pronounce": "uz_pronounce_1_1_14",
-              "description": "uz_description_1_1_14"
+              "text": "havo",
+              "pronounce": "havo",
+              "description": "atmosfera, ob-havo"
             },
             "ru": {
-              "text": "russian_word_1_1_14",
-              "pronounce": "ru_pronounce_1_1_14",
-              "description": "ru_description_1_1_14"
+              "text": "воздух",
+              "pronounce": "vozdukh",
+              "description": "атмосфера"
             },
             "eng": {
-              "text": "english_word_1_1_14",
-              "pronounce": "eng_pronounce_1_1_14",
-              "description": "eng_description_1_1_14"
+              "text": "air",
+              "pronounce": "eər",
+              "description": "the invisible gaseous substance"
             },
             "de": {
-              "text": "german_word_1_1_14",
-              "pronounce": "de_pronounce_1_1_14",
-              "description": "de_description_1_1_14"
+              "text": "Luft",
+              "pronounce": "lʊft",
+              "description": "Atmosphäre"
             }
           },
           {
             "uz": {
-              "text": "uzbek_word_1_1_15",
-              "pronounce": "uz_pronounce_1_1_15",
-              "description": "uz_description_1_1_15"
+              "text": "ijod",
+              "pronounce": "ijod",
+              "description": "yaratish, ijodkorlik"
             },
             "ru": {
-              "text": "russian_word_1_1_15",
-              "pronounce": "ru_pronounce_1_1_15",
-              "description": "ru_description_1_1_15"
+              "text": "творчество",
+              "pronounce": "tvorchestvo",
+              "description": "создание нового"
             },
             "eng": {
-              "text": "english_word_1_1_15",
-              "pronounce": "eng_pronounce_1_1_15",
-              "description": "eng_description_1_1_15"
+              "text": "creativity",
+              "pronounce": "ˌkriːeɪˈtɪvɪti",
+              "description": "the use of imagination"
             },
             "de": {
-              "text": "german_word_1_1_15",
-              "pronounce": "de_pronounce_1_1_15",
-              "description": "de_description_1_1_15"
+              "text": "Kreativität",
+              "pronounce": "kʁeatiˈviːtɛt",
+              "description": "Schaffenskraft"
             }
           },
           {
             "uz": {
-              "text": "uzbek_word_1_1_16",
-              "pronounce": "uz_pronounce_1_1_16",
-              "description": "uz_description_1_1_16"
+              "text": "ishonch",
+              "pronounce": "ishonch",
+              "description": "ishonish, ishonch"
             },
             "ru": {
-              "text": "russian_word_1_1_16",
-              "pronounce": "ru_pronounce_1_1_16",
-              "description": "ru_description_1_1_16"
+              "text": "доверие",
+              "pronounce": "doveriye",
+              "description": "уверенность"
             },
             "eng": {
-              "text": "english_word_1_1_16",
-              "pronounce": "eng_pronounce_1_1_16",
-              "description": "eng_description_1_1_16"
+              "text": "trust",
+              "pronounce": "trʌst",
+              "description": "firm belief in reliability"
             },
             "de": {
-              "text": "german_word_1_1_16",
-              "pronounce": "de_pronounce_1_1_16",
-              "description": "de_description_1_1_16"
+              "text": "Vertrauen",
+              "pronounce": "fɛɐ̯ˈtʁaʊ̯ən",
+              "description": "Glaube an Zuverlässigkeit"
             }
           },
           {
             "uz": {
-              "text": "uzbek_word_1_1_17",
-              "pronounce": "uz_pronounce_1_1_17",
-              "description": "uz_description_1_1_17"
+              "text": "jamiyat",
+              "pronounce": "jamiyat",
+              "description": "jamoa, jamiyat"
             },
             "ru": {
-              "text": "russian_word_1_1_17",
-              "pronounce": "ru_pronounce_1_1_17",
-              "description": "ru_description_1_1_17"
+              "text": "общество",
+              "pronounce": "obshchestvo",
+              "description": "сообщество"
             },
             "eng": {
-              "text": "english_word_1_1_17",
-              "pronounce": "eng_pronounce_1_1_17",
-              "description": "eng_description_1_1_17"
+              "text": "society",
+              "pronounce": "səˈsaɪəti",
+              "description": "the community of people"
             },
             "de": {
-              "text": "german_word_1_1_17",
-              "pronounce": "de_pronounce_1_1_17",
-              "description": "de_description_1_1_17"
+              "text": "Gesellschaft",
+              "pronounce": "ɡəˈzɛlʃaft",
+              "description": "Gemeinschaft"
             }
           },
           {
             "uz": {
-              "text": "uzbek_word_1_1_18",
-              "pronounce": "uz_pronounce_1_1_18",
-              "description": "uz_description_1_1_18"
+              "text": "kuch",
+              "pronounce": "kuch",
+              "description": "quvvat, kuch"
             },
             "ru": {
-              "text": "russian_word_1_1_18",
-              "pronounce": "ru_pronounce_1_1_18",
-              "description": "ru_description_1_1_18"
+              "text": "сила",
+              "pronounce": "sila",
+              "description": "мощь"
             },
             "eng": {
-              "text": "english_word_1_1_18",
-              "pronounce": "eng_pronounce_1_1_18",
-              "description": "eng_description_1_1_18"
+              "text": "strength",
+              "pronounce": "streŋθ",
+              "description": "the quality of being strong"
             },
             "de": {
-              "text": "german_word_1_1_18",
-              "pronounce": "de_pronounce_1_1_18",
-              "description": "de_description_1_1_18"
+              "text": "Stärke",
+              "pronounce": "ˈʃtɛʁkə",
+              "description": "Kraft, Macht"
             }
           },
           {
             "uz": {
-              "text": "uzbek_word_1_1_19",
-              "pronounce": "uz_pronounce_1_1_19",
-              "description": "uz_description_1_1_19"
+              "text": "maqsad",
+              "pronounce": "maqsad",
+              "description": "niyat, maqsad"
             },
             "ru": {
-              "text": "russian_word_1_1_19",
-              "pronounce": "ru_pronounce_1_1_19",
-              "description": "ru_description_1_1_19"
+              "text": "цель",
+              "pronounce": "tsel",
+              "description": "намерение"
             },
             "eng": {
-              "text": "english_word_1_1_19",
-              "pronounce": "eng_pronounce_1_1_19",
-              "description": "eng_description_1_1_19"
+              "text": "purpose",
+              "pronounce": "ˈpɜːrpəs",
+              "description": "the reason for which something is done"
             },
             "de": {
-              "text": "german_word_1_1_19",
-              "pronounce": "de_pronounce_1_1_19",
-              "description": "de_description_1_1_19"
+              "text": "Zweck",
+              "pronounce": "t͡svɛk",
+              "description": "Absicht, Ziel"
             }
           },
           {
             "uz": {
-              "text": "uzbek_word_1_1_20",
-              "pronounce": "uz_pronounce_1_1_20",
-              "description": "uz_description_1_1_20"
+              "text": "nafas",
+              "pronounce": "nafas",
+              "description": "nafas olish, nafas"
             },
             "ru": {
-              "text": "russian_word_1_1_20",
-              "pronounce": "ru_pronounce_1_1_20",
-              "description": "ru_description_1_1_20"
+              "text": "дыхание",
+              "pronounce": "dykhaniye",
+              "description": "вдох и выдох"
             },
             "eng": {
-              "text": "english_word_1_1_20",
-              "pronounce": "eng_pronounce_1_1_20",
-              "description": "eng_description_1_1_20"
+              "text": "breath",
+              "pronounce": "breθ",
+              "description": "air taken into the lungs"
             },
             "de": {
-              "text": "german_word_1_1_20",
-              "pronounce": "de_pronounce_1_1_20",
-              "description": "de_description_1_1_20"
+              "text": "Atem",
+              "pronounce": "ˈaːtəm",
+              "description": "Ein- und Ausatmen"
             }
           }
         ]

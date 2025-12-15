@@ -75,7 +75,8 @@
     <Grid>
         <!-- Top Navigation Bar -->
         <Grid Height="80" 
-              VerticalAlignment="Top">
+              VerticalAlignment="Top"
+              Background="White">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
@@ -220,16 +221,16 @@
         </Grid>
 
         <!-- Main Content Area with ScrollViewer -->
-        <ScrollViewer Margin="0,80,0,100" 
+        <ScrollViewer Margin="0,80,0,0" 
                       VerticalScrollBarVisibility="Auto" 
                       HorizontalScrollBarVisibility="Disabled"
-                      Background="#F8F8F8">
-            <Grid MaxWidth="1100" 
-                  HorizontalAlignment="Center" 
-                  Margin="40,40,40,40">
-
+                      Padding="0,0,0,100">
+            <Grid Margin="0,0,0,0">
                 <!-- Header Section -->
-                <StackPanel VerticalAlignment="Top" Margin="0,0,0,40">
+                <StackPanel VerticalAlignment="Top" 
+                           Margin="40,40,40,40"
+                           HorizontalAlignment="Center"
+                           MaxWidth="1100">
                     <TextBlock FontSize="18" 
                                Foreground="#999999"
                                TextAlignment="Left"
@@ -253,17 +254,28 @@
                                TextWrapping="Wrap"
                                LineHeight="24"
                                TextAlignment="Left"
-                               MaxWidth="700"
-                               HorizontalAlignment="Left"/>
+                               MaxWidth="700"/>
                 </StackPanel>
 
-                <!-- Words List -->
-                <StackPanel Margin="0,180,0,0">
+                <!-- Words List Container -->
+                <StackPanel Margin="40,180,40,40"
+                           HorizontalAlignment="Center"
+                           MaxWidth="1100">
                     <ItemsControl ItemsSource="{Binding Words}">
+                        <!-- ItemsPanel - VirtualizingStackPanel for better performance -->
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel Orientation="Vertical"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+
+                        <!-- ItemTemplate -->
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <!-- Word Card -->
-                                <Border Style="{StaticResource WordCardStyle}">
+                                <Border Style="{StaticResource WordCardStyle}"
+                                       Width="Auto"
+                                       Height="Auto">
                                     <StackPanel>
                                         <!-- Words and Pronunciations - 4 Columns -->
                                         <Grid Margin="0,0,0,25">
