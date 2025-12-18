@@ -16,10 +16,6 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-	  <Content Include="book-stack (1).ico" />
-	</ItemGroup>
-	
-	<ItemGroup>
 	  <ProjectReference Include="..\PolyglotApp.DataAccess\PolyglotApp.DataAccess.csproj" />
 	  <ProjectReference Include="..\PolyglotApp.Domain\PolyglotApp.Domain.csproj" />
 	  <ProjectReference Include="..\PolyglotApp.Service\PolyglotApp.Service.csproj" />
