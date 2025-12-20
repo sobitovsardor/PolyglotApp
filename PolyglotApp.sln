@@ -22,6 +22,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolyglotApp.Service", "Poly
 		{7ABEAF7A-8BC6-4C3F-A835-D2C9F11B525A} = {7ABEAF7A-8BC6-4C3F-A835-D2C9F11B525A}
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{89DDE09D-F92D-435D-B08A-BC257553F2E5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1273A569-97D2-46EE-B88E-BA61292D170D} = {89DDE09D-F92D-435D-B08A-BC257553F2E5}
+		{26C8D70A-0EAD-4887-B30F-9E7FC79E822C} = {89DDE09D-F92D-435D-B08A-BC257553F2E5}
+		{7ABEAF7A-8BC6-4C3F-A835-D2C9F11B525A} = {89DDE09D-F92D-435D-B08A-BC257553F2E5}
+		{34FA8BB8-6801-46EB-B5F4-40CF4F77367D} = {89DDE09D-F92D-435D-B08A-BC257553F2E5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {66280CCC-5226-4E20-832B-29261E35BB81}
