@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.1.11312.151 d18.0
+VisualStudioVersion = 18.1.11312.151
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolyglotApp.Desktop", "PolyglotApp.Desktop\PolyglotApp.Desktop.csproj", "{1273A569-97D2-46EE-B88E-BA61292D170D}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -21,8 +21,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolyglotApp.Service", "Poly
 		{26C8D70A-0EAD-4887-B30F-9E7FC79E822C} = {26C8D70A-0EAD-4887-B30F-9E7FC79E822C}
 		{7ABEAF7A-8BC6-4C3F-A835-D2C9F11B525A} = {7ABEAF7A-8BC6-4C3F-A835-D2C9F11B525A}
 	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,12 +47,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{1273A569-97D2-46EE-B88E-BA61292D170D} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
-		{26C8D70A-0EAD-4887-B30F-9E7FC79E822C} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
-		{7ABEAF7A-8BC6-4C3F-A835-D2C9F11B525A} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
-		{34FA8BB8-6801-46EB-B5F4-40CF4F77367D} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {66280CCC-5226-4E20-832B-29261E35BB81}
