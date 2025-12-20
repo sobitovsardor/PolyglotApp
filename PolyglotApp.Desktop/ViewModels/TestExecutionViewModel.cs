@@ -1,11 +1,8 @@
 ﻿using PolyglotApp.Domain.Entities.Enums;
 using PolyglotApp.Domain.Entities.Test;
-using PolyglotApp.Service.Interface;
 using PolyglotApp.Service.Interface.Test;
-using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Timers;
 using System.Windows;

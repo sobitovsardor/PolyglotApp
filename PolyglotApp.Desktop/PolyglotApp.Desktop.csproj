@@ -6,13 +6,17 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>book-stack (1).ico</ApplicationIcon>
+    <ApplicationIcon>Assets\Icons\book-stack.ico</ApplicationIcon>
   </PropertyGroup>
 	
 	<ItemGroup>
 		<Content Include="Data\Sections\*.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <Content Include="Assets\Icons\book-stack.ico" />
 	</ItemGroup>
 	
 	<ItemGroup>

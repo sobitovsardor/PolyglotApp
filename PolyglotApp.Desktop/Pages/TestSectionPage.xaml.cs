@@ -44,6 +44,6 @@ public partial class TestSectionPage : Page
         mainWindow?.MainFrame.Navigate(new DictionarySectionPage());
     }
 
-   
+
 }
 

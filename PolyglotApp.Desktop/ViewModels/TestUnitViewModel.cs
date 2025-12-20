@@ -1,17 +1,22 @@
-﻿using PolyglotApp.Domain.Entities.Dictionary;
-using PolyglotApp.Service.Interface;
+﻿using PolyglotApp.Service.Interface;
 using PolyglotApp.Service.Interface.Test;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace PolyglotApp.Desktop.ViewModels.Test;
 
-public class TestUnitViewModel
+public class TestUnitViewModel : INotifyPropertyChanged
 {
     private readonly IDictionaryService _dictionaryService;
     private readonly ITestService _testService;
 
     public string SectionTitle { get; }
     public ObservableCollection<UnitDisplayModel> Units { get; set; } = new();
+
+    public event PropertyChangedEventHandler? PropertyChanged;
+    private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+        => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
     public TestUnitViewModel(string sectionTitle, IDictionaryService dictionaryService, ITestService testService)
     {
@@ -39,6 +44,11 @@ public class TestUnitViewModel
                 BestResult = bestText
             });
         }
+    }
+
+    public async Task RefreshUnitsAsync()
+    {
+        await Task.Run(() => LoadUnitsAsync());
     }
 }
 

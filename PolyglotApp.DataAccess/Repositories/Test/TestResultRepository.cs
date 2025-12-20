@@ -33,8 +33,6 @@ namespace PolyglotApp.DataAccess.Repositories.Test
             await JsonSerializer.SerializeAsync(stream, results, new JsonSerializerOptions { WriteIndented = true });
         }
 
-        public async Task<List<TestResult>> GetAllResultsAsync() => await LoadResultsAsync();
-
         public async Task SaveResultAsync(TestResult result)
         {
             var results = await LoadResultsAsync();

@@ -41,17 +41,29 @@ public partial class TestUnitPage : Page
 
         if (confirm == MessageBoxResult.Yes)
         {
-            await _testService.DeleteResultsForSectionAsync(_sectionTitle);
+            try
+            {
+                await _testService.DeleteResultsForSectionAsync(_sectionTitle);
 
-            MessageBox.Show("Section results deleted successfully.",
-                "Success",
-                MessageBoxButton.OK,
-                MessageBoxImage.Information);
+                MessageBox.Show("Section results deleted successfully.",
+                    "Success",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
 
-            DataContext = new TestUnitViewModel(_sectionTitle, _dictionaryService, _testService);
+                // Refresh UI after deletion
+                var viewModel = new TestUnitViewModel(_sectionTitle, _dictionaryService, _testService);
+                DataContext = viewModel;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error deleting results: {ex.Message}",
+                    "Error",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
         }
     }
-    
+
     private void BackToHome_Click(object sender, RoutedEventArgs e)
     {
         var mainWindow = Application.Current.MainWindow as MainWindow;

@@ -7,7 +7,6 @@ using PolyglotApp.Service.Interface;
 using PolyglotApp.Service.Interface.Test;
 using PolyglotApp.Service.Services;       // <-- TestService namespace
 using PolyglotApp.Service.Services.Test;
-using System;
 using System.IO;
 using System.Windows;
 

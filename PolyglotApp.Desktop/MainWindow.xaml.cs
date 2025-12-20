@@ -1,7 +1,6 @@
 ﻿using PolyglotApp.Desktop.Pages;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Navigation;
 
 namespace PolyglotApp.Desktop;
 
@@ -14,15 +13,15 @@ public partial class MainWindow : Window
 
     private void DictionaryPage_Click(object sender, RoutedEventArgs e)
     {
-        try 
-        { 
-            NavigateToPage(new DictionarySectionPage()); 
+        try
+        {
+            NavigateToPage(new DictionarySectionPage());
         }
         catch (System.Exception ex)
         {
             MessageBox.Show("Lug'at sahifasini yuklashda xatolik yuz berdi: " + ex.Message);
         }
-        
+
     }
 
     private void GamePage_Click(object sender, RoutedEventArgs e)

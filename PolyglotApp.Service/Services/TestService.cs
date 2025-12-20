@@ -3,7 +3,6 @@ using PolyglotApp.DataAccess.Interfaces.Test;
 using PolyglotApp.Domain.Entities.Test;
 using PolyglotApp.Service.Extensions;
 using PolyglotApp.Service.Interface.Test;
-using System.Linq;
 
 namespace PolyglotApp.Service.Services.Test
 {
@@ -43,11 +42,6 @@ namespace PolyglotApp.Service.Services.Test
         public async Task<TestResult?> GetBestResultAsync(string sectionTitle, string unitTitle)
         {
             return await _testResultRepository.GetBestResultAsync(sectionTitle, unitTitle);
-        }
-
-        public async Task DeleteResultsForUnitAsync(string sectionTitle, string unitTitle)
-        {
-            await _testResultRepository.DeleteResultsForUnitAsync(sectionTitle, unitTitle);
         }
 
         public async Task DeleteResultsForSectionAsync(string sectionTitle)

@@ -4,7 +4,6 @@ namespace PolyglotApp.DataAccess.Interfaces.Test
 {
     public interface ITestResultRepository
     {
-        Task<List<TestResult>> GetAllResultsAsync();
         Task SaveResultAsync(TestResult result);
         Task<TestResult?> GetBestResultAsync(string sectionTitle, string unitTitle);
         Task DeleteResultsForUnitAsync(string sectionTitle, string unitTitle);
